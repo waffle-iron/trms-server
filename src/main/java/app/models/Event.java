@@ -5,9 +5,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Event {
+public class Event extends Model {
 
-    private int id;
     private EventType eventType;
     private LocalDate datetime;
     private String location;
@@ -21,14 +20,6 @@ public class Event {
     private byte[] attachment;
 
     public Event() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public EventType getEventType() {
@@ -122,7 +113,6 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "id=" + id +
                 ", eventType=" + eventType +
                 ", datetime=" + datetime +
                 ", location='" + location + '\'' +

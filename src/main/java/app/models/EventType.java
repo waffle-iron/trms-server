@@ -2,21 +2,12 @@ package app.models;
 
 import java.util.Objects;
 
-public class EventType {
+public class EventType extends Model {
 
-    private int id;
     private String name;
     private int percentage;
 
     public EventType() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -38,7 +29,6 @@ public class EventType {
     @Override
     public String toString() {
         return "EventType{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", percentage=" + percentage +
                 '}';

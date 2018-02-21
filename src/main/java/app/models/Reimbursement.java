@@ -3,9 +3,8 @@ package app.models;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Reimbursement {
+public class Reimbursement extends Model {
 
-    private int id;
     private User employee;
     private Event event;
     private LocalDate createdOn;
@@ -19,14 +18,6 @@ public class Reimbursement {
     private String deniedReason;
 
     public Reimbursement() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public User getEmployee() {
@@ -120,7 +111,6 @@ public class Reimbursement {
     @Override
     public String toString() {
         return "Reimbursement{" +
-                "id=" + id +
                 ", employee=" + employee +
                 ", event=" + event +
                 ", createdOn=" + createdOn +

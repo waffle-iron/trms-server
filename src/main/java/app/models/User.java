@@ -3,9 +3,8 @@ package app.models;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class User {
+public class User extends Model {
 
-    private int id;
     private String firstName;
     private String lastName;
     private String jobTitle;
@@ -18,14 +17,6 @@ public class User {
     private LocalDate updatedOn;
 
     public User() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -111,7 +102,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", jobTitle='" + jobTitle + '\'' +

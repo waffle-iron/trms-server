@@ -2,21 +2,12 @@ package app.models;
 
 import java.util.Objects;
 
-public class GradingFormat {
+public class GradingFormat extends Model {
 
-    private int id;
     private String format;
     private String description;
 
     public GradingFormat() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFormat() {
@@ -38,7 +29,6 @@ public class GradingFormat {
     @Override
     public String toString() {
         return "GradingFormat{" +
-                "id=" + id +
                 ", format='" + format + '\'' +
                 ", description='" + description + '\'' +
                 '}';
