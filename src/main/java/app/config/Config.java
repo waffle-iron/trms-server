@@ -16,6 +16,7 @@ public class Config {
     public Config() {
         dotEnv = Dotenv
                 .configure()
+                .directory("./")
                 .ignoreIfMalformed()
                 .ignoreIfMissing()
                 .load();
