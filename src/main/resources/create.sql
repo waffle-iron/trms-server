@@ -1,79 +1,8 @@
-CREATE TABLE IF NOT EXISTS roles (
-  id   SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS users (
-  id                   SERIAL PRIMARY KEY,
-  first_name           VARCHAR(255)        NOT NULL,
-  last_name            VARCHAR(255)        NOT NULL,
-  job_title            VARCHAR(255),
-  email                VARCHAR(255) UNIQUE NOT NULL,
-  role_id              INTEGER REFERENCES roles (id),
-  password             VARCHAR(255)        NOT NULL,
-  direct_supervisor_id INTEGER REFERENCES users (id),
-  department_head_id   INTEGER REFERENCES users (id),
-  created_on           DATE                NOT NULL,
-  updated_on           DATE                NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS event_types (
-  id         SERIAL PRIMARY KEY,
-  name       VARCHAR(255),
-  percentage INTEGER CHECK (percentage > 0 AND percentage <= 100)
-);
-
-CREATE TYPE GRADING_FORMAT AS ENUM (
-  'GPA',
-  'Letter',
-  '100',
-  'PassFail',
-  'Presentation'
-);
-
-CREATE TABLE IF NOT EXISTS grading_formats (
-  id          SERIAL PRIMARY KEY,
-  format      GRADING_FORMAT NOT NULL,
-  description TEXT
-);
-
-CREATE TYPE EVENT_STATUS AS ENUM (
-  'Applied',
-  'Supervisor Approved',
-  'Department Head Approved',
-  'Approved',
-  'In Progress',
-  'Pass',
-  'Fail',
-  'BenCo Approved'
-);
-
-CREATE TABLE IF NOT EXISTS events (
-  id                   SERIAL PRIMARY KEY,
-  event_type_id        INTEGER REFERENCES event_types (id),
-  datetime             TIMESTAMP     NOT NULL,
-  location             VARCHAR(255)  NOT NULL,
-  description          TEXT,
-  justification        TEXT          NOT NULL,
-  cost                 DECIMAL(6, 2) NOT NULL,
-  grading_format       INTEGER REFERENCES grading_formats (id),
-  passing_grade_cutoff VARCHAR(255)  NOT NULL,
-  completed_on         DATE,
-  status               EVENT_STATUS,
-  attachment           BYTEA
-);
-
-CREATE TABLE IF NOT EXISTS reimbursements (
-  id                              SERIAL PRIMARY KEY,
-  employee_id                     INTEGER REFERENCES users (id),
-  event_id                        INTEGER REFERENCES events (id),
-  created_on                      TIMESTAMP NOT NULL,
-  update_on                       TIMESTAMP NOT NULL,
-  direct_supervisor_approved_on   TIMESTAMP,
-  direct_supervisor_auto_approved BOOLEAN,
-  department_head_approved_on     TIMESTAMP,
-  department_head_auto_approved   BOOLEAN,
-  benco_approved_on               TIMESTAMP,
-  denied_on                       TIMESTAMP,
-  denied_reason                   TEXT
-);
+create table if not exists roles (id serial primary key, name varchar(255) not null);
+create table if not exists users (id serial primary key, first_name varchar(255) not null, last_name varchar(255) not null, job_title varchar(255), email varchar(255) unique not null, role_id integer references roles(id), password varchar(255) not null, direct_supervisor_id integer references users(id), department_head_id integer references users(id), created_on date not null, updated_on date not null);
+create table if not exists event_types (id serial primary key, name varchar(255), percentage integer check (percentage > 0 and percentage <= 100));
+create type grading_format as enum ('GPA', 'Letter', '100', 'PassFail', 'Presentation');
+create table if not exists grading_formats (id serial primary key, format grading_format not null, description text);
+create type event_status as enum ('Applied', 'Supervisor Approved', 'Department Head Approved', 'Approved', 'In Progress', 'Pass', 'Fail', 'BenCo Approved');
+create table if not exists events (id serial primary key, event_type_id integer references event_types(id), datetime timestamp not null, location varchar(255) not null, description text, justification text not null, cost decimal (6,2) not null, grading_format integer references grading_formats(id), passing_grade_cutoff varchar(255) not null, completed_on date, status event_status, attachment bytea);
+create table if not exists reimbursements (id serial primary key, employee_id integer references users(id), event_id integer references events(id), created_on timestamp not null, update_on timestamp not null, direct_supervisor_approved_on timestamp, direct_supervisor_auto_approved boolean, department_head_approved_on timestamp, department_head_auto_approved boolean, benco_approved_on timestamp, denied_on timestamp, denied_reason text);
