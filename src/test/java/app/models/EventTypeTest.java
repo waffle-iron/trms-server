@@ -1,25 +1,18 @@
 package app.models;
 
+import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Optional;
-
 import static org.junit.Assert.*;
 
-public class EventTypeTest {
+public class EventTypeTest extends TestCase {
 
     private EventType eventType;
 
     @Before
     public void setUp() {
         eventType = new EventType();
-    }
-
-    @Test
-    public void id() {
-        eventType.setId(1L);
-        assertEquals(Optional.of(1L), eventType.getId());
     }
 
     @Test

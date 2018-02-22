@@ -1,5 +1,6 @@
 package app;
 
+import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +9,7 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class ApplicationTest {
+public class ApplicationTest extends TestCase {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 

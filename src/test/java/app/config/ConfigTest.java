@@ -1,10 +1,11 @@
 package app.config;
 
+import app.utilities.TestCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class ConfigTest {
+public class ConfigTest extends TestCase {
 
     @Test
     public void config() {

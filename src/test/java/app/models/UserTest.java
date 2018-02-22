@@ -1,34 +1,17 @@
 package app.models;
 
-import org.junit.After;
-import org.junit.Before;
+import app.utilities.TestCase;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
-public class UserTest {
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
+public class UserTest extends TestCase {
 
     @Test
     public void hasEmptyConstructor() {
         assertTrue(new User() instanceof User);
-    }
-
-    @Test
-    public void id() {
-        User user = new User();
-        user.setId(1L);
-        assertEquals(Optional.of(1L), user.getId());
     }
 
     @Test

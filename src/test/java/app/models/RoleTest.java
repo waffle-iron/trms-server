@@ -1,19 +1,11 @@
 package app.models;
 
+import app.utilities.TestCase;
 import org.junit.Test;
 
-import java.util.Optional;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.Assert.*;
-
-public class RoleTest {
-
-    @Test
-    public void id() {
-        Role role = new Role();
-        role.setId(1L);
-        assertEquals(Optional.of(1L), role.getId());
-    }
+public class RoleTest extends TestCase {
 
     @Test
     public void name() {

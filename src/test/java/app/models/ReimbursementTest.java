@@ -1,14 +1,14 @@
 package app.models;
 
+import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
-public class ReimbursementTest {
+public class ReimbursementTest extends TestCase {
 
     private Reimbursement reimbursement;
     private LocalDate date;
@@ -23,12 +23,6 @@ public class ReimbursementTest {
     public void constructor() {
         Reimbursement reimbursement = new Reimbursement();
         assertTrue(reimbursement instanceof Reimbursement);
-    }
-
-    @Test
-    public void id() {
-        reimbursement.setId(1L);
-        assertEquals(Optional.of(1L), reimbursement.getId());
     }
 
     @Test

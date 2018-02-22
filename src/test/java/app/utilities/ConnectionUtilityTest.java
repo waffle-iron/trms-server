@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import static org.junit.Assert.assertTrue;
 
-public class ConnectionUtilityTest {
+public class ConnectionUtilityTest extends TestCase {
 
     @Test
     public void getConnection() throws SQLException {

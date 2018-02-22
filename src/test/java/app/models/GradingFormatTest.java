@@ -1,25 +1,18 @@
 package app.models;
 
+import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Optional;
-
 import static org.junit.Assert.*;
 
-public class GradingFormatTest {
+public class GradingFormatTest extends TestCase {
 
     private GradingFormat gradingFormat;
 
     @Before
     public void setUp() {
         gradingFormat = new GradingFormat();
-    }
-
-    @Test
-    public void id() {
-        gradingFormat.setId(1L);
-        assertEquals(Optional.of(1L), gradingFormat.getId());
     }
 
     @Test

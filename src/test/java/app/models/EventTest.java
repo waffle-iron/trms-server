@@ -1,27 +1,21 @@
 package app.models;
 
+import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
-public class EventTest {
+public class EventTest extends TestCase {
 
     private Event event;
 
     @Before
     public void setUp() {
         event = new Event();
-    }
-
-    @Test
-    public void id() {
-        event.setId(1L);
-        assertEquals(Optional.of(1L), event.getId());
     }
 
     @Test
