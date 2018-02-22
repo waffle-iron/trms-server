@@ -1,5 +1,6 @@
 package app.models;
 
+import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,9 +22,9 @@ public class EventTest extends TestCase {
     @Test
     public void constructor() {
         byte[] bytes = {};
-        Date date = new Date();
+        int date = SeedFactory.unix();
         Event event = new Event(
-                1L,
+                1,
                 date,
                 date,
                 new EventType(),
@@ -38,7 +39,7 @@ public class EventTest extends TestCase {
                 "status",
                 bytes
         );
-        assertEquals(Long.valueOf(1), event.getId());
+        assertEquals(1, event.getId());
         assertEquals(date, event.getDateCreated());
         assertEquals(date, event.getLastUpdated());
         assertTrue(event.getEventType() instanceof EventType);
@@ -63,7 +64,7 @@ public class EventTest extends TestCase {
 
     @Test
     public void dateTime() {
-        Date date = new Date();
+        int date = SeedFactory.unix();
         event.setDatetime(date);
         assertEquals(date, event.getDatetime());
     }
@@ -107,7 +108,7 @@ public class EventTest extends TestCase {
 
     @Test
     public void completedOn() {
-        Date date = new Date();
+        int date = SeedFactory.unix();
         event.setCompletedOn(date);
         assertEquals(date, event.getCompletedOn());
     }

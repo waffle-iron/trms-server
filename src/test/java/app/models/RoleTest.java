@@ -1,8 +1,10 @@
 package app.models;
 
+import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -20,14 +22,14 @@ public class RoleTest extends TestCase {
 
     @Test
     public void constructor() {
-        Date date = new Date();
+        int date = SeedFactory.unix();
         Role r = new Role(
-                1L,
+                1,
                 date,
                 date,
                 "name"
         );
-        assertEquals(Long.valueOf(1), r.getId());
+        assertEquals(1, r.getId());
         assertEquals(date, r.getDateCreated());
         assertEquals(date, r.getLastUpdated());
         assertEquals("name", r.getName());

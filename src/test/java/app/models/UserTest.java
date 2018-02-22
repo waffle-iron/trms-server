@@ -1,5 +1,6 @@
 package app.models;
 
+import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Test;
 
@@ -16,9 +17,9 @@ public class UserTest extends TestCase {
 
     @Test
     public void constructor() {
-        Date date = new Date();
+        int date = SeedFactory.unix();
         User u = new User(
-                1L,
+                1,
                 date,
                 date,
                 "firstname",
@@ -30,7 +31,7 @@ public class UserTest extends TestCase {
                 new User(),
                 new User()
         );
-        assertEquals(Long.valueOf(1), u.getId());
+        assertEquals(1, u.getId());
         assertEquals(date, u.getDateCreated());
         assertEquals(date, u.getLastUpdated());
         assertEquals("firstname", u.getFirstName());

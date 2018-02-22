@@ -1,5 +1,6 @@
 package app.models;
 
+import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,15 +20,15 @@ public class EventTypeTest extends TestCase {
 
     @Test
     public void constructor() {
-        Date date = new Date();
+        int date = SeedFactory.unix();
         EventType et = new EventType(
-                1L,
+                1,
                 date,
                 date,
                 "name",
                 100
         );
-        assertEquals(Long.valueOf(1), et.getId());
+        assertEquals(1, et.getId());
         assertEquals(date, et.getDateCreated());
         assertEquals(date, et.getLastUpdated());
         assertEquals("name", et.getName());

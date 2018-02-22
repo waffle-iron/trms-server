@@ -1,11 +1,23 @@
 package app.dao;
 
 import app.models.User;
+import app.seeds.SeedFactory;
 
-import java.sql.ResultSet;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.List;
 
 public class UserDao extends Crud<User> {
+
+    private final String createQuery = "INSERT INTO users (" +
+            "first_name, " +
+            "last_name, " +
+            "job_title, " +
+            "email, " +
+            "role_id, " +
+            "password, " +
+            "created_on " +
+            ") VALUES (?, ?, ?, ?, ?, ?, to_timestamp(?))";
 
     @Override
     User fetch(int id) {
@@ -19,7 +31,21 @@ public class UserDao extends Crud<User> {
 
     @Override
     boolean create(User user) {
-        return false;
+        try (Connection c = connection()) {
+            PreparedStatement ps = c.prepareStatement(createQuery);
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setString(3, user.getJobTitle());
+            ps.setString(4, user.getEmail());
+            ps.setLong(5, user.getRole().getId());
+            ps.setString(6, user.getPassword());
+            ps.setInt(7, SeedFactory.unix());
+            return ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("failing");
+            return false;
+        }
     }
 
     @Override

@@ -13,7 +13,7 @@ public abstract class Crud<T> {
     abstract boolean create(T t);
     abstract boolean update(T t);
     abstract boolean delete(T t);
-    abstract T buildObject(T t, ResultSet resultSet);
+    abstract T buildObject(T t, ResultSet resultSet) throws SQLException;
 
     Connection connection() {
         try {

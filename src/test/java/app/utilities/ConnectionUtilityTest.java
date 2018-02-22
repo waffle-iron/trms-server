@@ -12,7 +12,6 @@ public class ConnectionUtilityTest extends TestCase {
     @Test
     public void getConnection() throws SQLException {
         assertTrue(ConnectionUtility.getInstance().getConnection() instanceof Connection);
-        assertTrue(ConnectionUtility.getInstance().getConnection() instanceof Connection);
     }
 
     @Test

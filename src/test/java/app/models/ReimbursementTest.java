@@ -1,29 +1,28 @@
 package app.models;
 
+import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Date;
 
 import static org.junit.Assert.*;
 
 public class ReimbursementTest extends TestCase {
 
     private Reimbursement reimbursement;
-    private Date date;
+    private int date;
 
     @Before
     public void setUp() {
         reimbursement = new Reimbursement();
-        date = new Date();
+        date = SeedFactory.unix();
     }
 
     @Test
     public void constructor() {
-        Date date = new Date();
+        int date = SeedFactory.unix();
         Reimbursement r = new Reimbursement(
-                1L,
+                1,
                 date,
                 date,
                 new User(),
@@ -36,7 +35,7 @@ public class ReimbursementTest extends TestCase {
                 date,
                 "denied reason"
         );
-        assertEquals(Long.valueOf(1), r.getId());
+        assertEquals(1, r.getId());
         assertEquals(date, r.getDateCreated());
         assertEquals(date, r.getLastUpdated());
         assertTrue(r.getEmployee() instanceof User);

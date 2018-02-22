@@ -1,6 +1,5 @@
 package app.models;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Role extends Model {
@@ -14,7 +13,7 @@ public class Role extends Model {
         this.name = name;
     }
 
-    public Role(Long id, Date dateCreated, Date lastUpdated, String name) {
+    public Role(int id, int dateCreated, int lastUpdated, String name) {
         super(id, dateCreated, lastUpdated);
         this.name = name;
     }

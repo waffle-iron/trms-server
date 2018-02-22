@@ -1,16 +1,19 @@
 package app.models;
 
+import app.seeds.SeedFactory;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.Date;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ModelTest {
 
     private TestClass tc;
-    Date date = new Date();
+    int date = SeedFactory.unix();
 
     @Before
     public void setUp() {
@@ -19,8 +22,8 @@ public class ModelTest {
 
     @Test
     public void setId() {
-        tc.setId(1L);
-        assertEquals(Long.valueOf(1), tc.getId());
+        tc.setId(1);
+        assertEquals(1, tc.getId());
     }
 
     @Test

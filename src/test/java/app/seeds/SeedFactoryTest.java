@@ -24,9 +24,9 @@ public class SeedFactoryTest {
     @Test
     public void createUser() {
         User user = SeedFactory.createUser();
-        assertNull(user.getId());
-        assertNull(user.getDateCreated());
-        assertNull(user.getLastUpdated());
+        assertEquals(0, user.getId());
+        assertEquals(0, user.getDateCreated());
+        assertEquals(0, user.getLastUpdated());
         assertTrue(user.getFirstName() instanceof String);
         assertTrue(user.getLastName() instanceof String);
         assertTrue(user.getJobTitle() instanceof String);
@@ -45,9 +45,9 @@ public class SeedFactoryTest {
     @Test
     public void createRole() {
         Role role = SeedFactory.createRole("Employee");
-        assertNull(role.getId());
-        assertNull(role.getDateCreated());
-        assertNull(role.getLastUpdated());
+        assertEquals(0, role.getId());
+        assertEquals(0, role.getDateCreated());
+        assertEquals(0, role.getLastUpdated());
         assertEquals("Employee", role.getName());
     }
 }

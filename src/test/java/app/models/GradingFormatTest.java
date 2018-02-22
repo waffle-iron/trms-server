@@ -1,5 +1,6 @@
 package app.models;
 
+import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,15 +20,15 @@ public class GradingFormatTest extends TestCase {
 
     @Test
     public void constructor() {
-        Date date = new Date();
+        int date = SeedFactory.unix();
         GradingFormat gf = new GradingFormat(
-                1L,
+                1,
                 date,
                 date,
                 "format",
                 "description"
         );
-        assertEquals(Long.valueOf(1), gf.getId());
+        assertEquals(1, gf.getId());
         assertEquals(date, gf.getDateCreated());
         assertEquals(date, gf.getLastUpdated());
         assertEquals("format", gf.getFormat());

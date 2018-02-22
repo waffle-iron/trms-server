@@ -1,52 +1,57 @@
 package app.models;
 
-import java.util.Date;
+import java.time.Instant;
 
 abstract class Model implements ModelObject {
 
-    private Long id;
-    private Date dateCreated;
-    private Date lastUpdated;
+    private int id;
+    private int dateCreated;
+    private int lastUpdated;
 
     public Model() {
     }
 
-    public Model(Long id, Date dateCreated, Date lastUpdated) {
+    public Model(int id, int dateCreated, int lastUpdated) {
         this.id = id;
         this.dateCreated = dateCreated;
         this.lastUpdated = lastUpdated;
     }
 
     @Override
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    @Override
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Date getDateCreated() {
+    public int getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(int dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public Date getLastUpdated() {
+    public int getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(Date lastUpdated) {
+    public void setLastUpdated(int lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
     public void updateTimeStamps() {
-        lastUpdated = new Date();
+        lastUpdated = unix();
 
-        if (dateCreated == null) {
-            dateCreated = new Date();
+        if (dateCreated == 0) {
+            dateCreated = unix();
         }
+    }
+
+    private int unix() {
+        return (int) Instant.now().getEpochSecond();
     }
 }
