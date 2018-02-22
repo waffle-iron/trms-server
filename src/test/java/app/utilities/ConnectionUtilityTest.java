@@ -11,18 +11,18 @@ public class ConnectionUtilityTest {
 
     @Test
     public void getConnection() throws SQLException {
-        assertTrue(ConnectionUtility.getInstance().getConnection(false) instanceof Connection);
-        assertTrue(ConnectionUtility.getInstance().getConnection(true) instanceof Connection);
+        assertTrue(ConnectionUtility.getInstance().getConnection() instanceof Connection);
+        assertTrue(ConnectionUtility.getInstance().getConnection() instanceof Connection);
     }
 
     @Test
     public void canDropTable() {
-        ConnectionUtility.getInstance().dropTables(true);
+        ConnectionUtility.getInstance().dropTables();
     }
 
     @Test
     public void canCreateTables() {
-        ConnectionUtility.getInstance().dropTables(true);
-        assertTrue(ConnectionUtility.getInstance().createTables(true));
+        ConnectionUtility.getInstance().dropTables();
+        assertTrue(ConnectionUtility.getInstance().createTables());
     }
 }

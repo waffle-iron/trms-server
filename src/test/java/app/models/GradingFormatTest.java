@@ -3,6 +3,8 @@ package app.models;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 public class GradingFormatTest {
@@ -16,8 +18,8 @@ public class GradingFormatTest {
 
     @Test
     public void id() {
-        gradingFormat.setId(1);
-        assertEquals(1, gradingFormat.getId());
+        gradingFormat.setId(1L);
+        assertEquals(Optional.of(1L), gradingFormat.getId());
     }
 
     @Test

@@ -3,6 +3,8 @@ package app.models;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 public class EventTypeTest {
@@ -16,8 +18,8 @@ public class EventTypeTest {
 
     @Test
     public void id() {
-        eventType.setId(1);
-        assertEquals(1, eventType.getId());
+        eventType.setId(1L);
+        assertEquals(Optional.of(1L), eventType.getId());
     }
 
     @Test

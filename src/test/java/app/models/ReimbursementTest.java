@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -26,8 +27,8 @@ public class ReimbursementTest {
 
     @Test
     public void id() {
-        reimbursement.setId(1);
-        assertEquals(1, reimbursement.getId());
+        reimbursement.setId(1L);
+        assertEquals(Optional.of(1L), reimbursement.getId());
     }
 
     @Test

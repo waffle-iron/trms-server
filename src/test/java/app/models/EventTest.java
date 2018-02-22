@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -19,8 +20,8 @@ public class EventTest {
 
     @Test
     public void id() {
-        event.setId(1);
-        assertEquals(1, event.getId());
+        event.setId(1L);
+        assertEquals(Optional.of(1L), event.getId());
     }
 
     @Test

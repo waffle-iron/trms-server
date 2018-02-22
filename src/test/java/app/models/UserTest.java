@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -26,8 +27,8 @@ public class UserTest {
     @Test
     public void id() {
         User user = new User();
-        user.setId(1);
-        assertEquals(1, user.getId());
+        user.setId(1L);
+        assertEquals(Optional.of(1L), user.getId());
     }
 
     @Test
