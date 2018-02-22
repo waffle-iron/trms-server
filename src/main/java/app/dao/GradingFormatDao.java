@@ -4,34 +4,35 @@ import app.models.GradingFormat;
 
 import java.sql.ResultSet;
 
-public class GradingFormatDao implements Crud<GradingFormat> {
+public class GradingFormatDao extends Crud<GradingFormat> {
+
     @Override
-    public GradingFormat fetch() {
+    GradingFormat fetch(int id) {
         return null;
     }
 
     @Override
-    public GradingFormat fetchAll() {
+    GradingFormat fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    public GradingFormat create() {
+    GradingFormat create(GradingFormat gradingFormat) {
         return null;
     }
 
     @Override
-    public GradingFormat update() {
+    GradingFormat update(GradingFormat gradingFormat) {
         return null;
     }
 
     @Override
-    public GradingFormat delete() {
+    GradingFormat delete(GradingFormat gradingFormat) {
         return null;
     }
 
     @Override
-    public GradingFormat buildObject(GradingFormat gradingFormat, ResultSet resultSet) {
+    GradingFormat buildObject(GradingFormat gradingFormat, ResultSet resultSet) {
         return null;
     }
 }

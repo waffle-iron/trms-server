@@ -3,6 +3,7 @@ package app.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Objects;
 
 public class Event extends Model {
@@ -20,6 +21,21 @@ public class Event extends Model {
     private byte[] attachment;
 
     public Event() {
+    }
+
+    public Event(Long id, Date dateCreated, Date lastUpdated, EventType eventType, LocalDate datetime, String location, String description, String justification, BigDecimal cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDate completedOn, String status, byte[] attachment) {
+        super(id, dateCreated, lastUpdated);
+        this.eventType = eventType;
+        this.datetime = datetime;
+        this.location = location;
+        this.description = description;
+        this.justification = justification;
+        this.cost = cost;
+        this.gradingFormat = gradingFormat;
+        this.passingGradeCutoff = passingGradeCutoff;
+        this.completedOn = completedOn;
+        this.status = status;
+        this.attachment = attachment;
     }
 
     public EventType getEventType() {

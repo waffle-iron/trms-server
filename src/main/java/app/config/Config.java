@@ -4,6 +4,8 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 public class Config {
 
+    public static String ENVIRONMENT = "Development";
+
     private Dotenv dotEnv;
 
     private String db;

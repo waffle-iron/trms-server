@@ -4,34 +4,35 @@ import app.models.Role;
 
 import java.sql.ResultSet;
 
-public class RoleDao implements Crud<Role> {
+public class RoleDao extends Crud<Role> {
+
     @Override
-    public Role fetch() {
+    Role fetch(int id) {
         return null;
     }
 
     @Override
-    public Role fetchAll() {
+    Role fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    public Role create() {
+    Role create(Role role) {
         return null;
     }
 
     @Override
-    public Role update() {
+    Role update(Role role) {
         return null;
     }
 
     @Override
-    public Role delete() {
+    Role delete(Role role) {
         return null;
     }
 
     @Override
-    public Role buildObject(Role role, ResultSet resultSet) {
+    Role buildObject(Role role, ResultSet resultSet) {
         return null;
     }
 }

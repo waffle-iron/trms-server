@@ -2,36 +2,35 @@ package app.dao;
 
 import java.sql.ResultSet;
 
-public class EventDao implements Crud<EventDao> {
+public class EventDao extends Crud<EventDao> {
+
     @Override
-    public EventDao fetch() {
+    EventDao fetch(int id) {
         return null;
     }
 
     @Override
-    public EventDao fetchAll() {
+    EventDao fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    public EventDao create() {
+    EventDao create(EventDao eventDao) {
         return null;
     }
 
     @Override
-    public EventDao update() {
+    EventDao update(EventDao eventDao) {
         return null;
     }
 
     @Override
-    public EventDao delete() {
+    EventDao delete(EventDao eventDao) {
         return null;
     }
 
     @Override
-    public EventDao buildObject(EventDao t, ResultSet resultSet) {
+    EventDao buildObject(EventDao eventDao, ResultSet resultSet) {
         return null;
     }
-
-
 }

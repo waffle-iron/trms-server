@@ -1,5 +1,6 @@
 package app.models;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class GradingFormat extends Model {
@@ -8,6 +9,12 @@ public class GradingFormat extends Model {
     private String description;
 
     public GradingFormat() {
+    }
+
+    public GradingFormat(Long id, Date dateCreated, Date lastUpdated, String format, String description) {
+        super(id, dateCreated, lastUpdated);
+        this.format = format;
+        this.description = description;
     }
 
     public String getFormat() {

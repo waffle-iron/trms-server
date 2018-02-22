@@ -4,34 +4,35 @@ import app.models.User;
 
 import java.sql.ResultSet;
 
-public class UserDao implements Crud<User> {
+public class UserDao extends Crud<User> {
+
     @Override
-    public User fetch() {
+    User fetch(int id) {
         return null;
     }
 
     @Override
-    public User fetchAll() {
+    User fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    public User create() {
+    User create(User user) {
         return null;
     }
 
     @Override
-    public User update() {
+    User update(User user) {
         return null;
     }
 
     @Override
-    public User delete() {
+    User delete(User user) {
         return null;
     }
 
     @Override
-    public User buildObject(User user, ResultSet resultSet) {
+    User buildObject(User user, ResultSet resultSet) {
         return null;
     }
 }

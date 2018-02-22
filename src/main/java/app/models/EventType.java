@@ -1,5 +1,6 @@
 package app.models;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class EventType extends Model {
@@ -8,6 +9,13 @@ public class EventType extends Model {
     private int percentage;
 
     public EventType() {
+        super();
+    }
+
+    public EventType(Long id, String name, int percentage, Date createdOn, Date updatedOn) {
+        super(id, createdOn, updatedOn);
+        this.name = name;
+        this.percentage = percentage;
     }
 
     public String getName() {

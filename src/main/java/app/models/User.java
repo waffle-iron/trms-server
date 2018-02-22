@@ -1,6 +1,7 @@
 package app.models;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class User extends Model {
@@ -17,6 +18,20 @@ public class User extends Model {
     private LocalDate updatedOn;
 
     public User() {
+    }
+
+    public User(Long id, Date dateCreated, Date lastUpdated, String firstName, String lastName, String jobTitle, String email, Role role, String password, User directSupervisor, User departmentHead, LocalDate createdOn, LocalDate updatedOn) {
+        super(id, dateCreated, lastUpdated);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.jobTitle = jobTitle;
+        this.email = email;
+        this.role = role;
+        this.password = password;
+        this.directSupervisor = directSupervisor;
+        this.departmentHead = departmentHead;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
     }
 
     public String getFirstName() {

@@ -1,6 +1,7 @@
 package app.models;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class Reimbursement extends Model {
@@ -18,6 +19,21 @@ public class Reimbursement extends Model {
     private String deniedReason;
 
     public Reimbursement() {
+    }
+
+    public Reimbursement(Long id, Date dateCreated, Date lastUpdated, User employee, Event event, LocalDate createdOn, LocalDate updatedOn, LocalDate directSupervisorApprovedOn, boolean directSupervisorAutoApproved, LocalDate departmentHeadApprovedOn, boolean departmentHeadAutoApproved, LocalDate benCoApprovedOn, LocalDate deniedOn, String deniedReason) {
+        super(id, dateCreated, lastUpdated);
+        this.employee = employee;
+        this.event = event;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
+        this.directSupervisorApprovedOn = directSupervisorApprovedOn;
+        this.directSupervisorAutoApproved = directSupervisorAutoApproved;
+        this.departmentHeadApprovedOn = departmentHeadApprovedOn;
+        this.departmentHeadAutoApproved = departmentHeadAutoApproved;
+        this.benCoApprovedOn = benCoApprovedOn;
+        this.deniedOn = deniedOn;
+        this.deniedReason = deniedReason;
     }
 
     public User getEmployee() {

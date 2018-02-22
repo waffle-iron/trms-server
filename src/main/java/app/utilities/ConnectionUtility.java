@@ -27,8 +27,8 @@ public class ConnectionUtility {
     private ConnectionUtility() {
     }
 
-    public Connection getConnection(boolean testing) throws SQLException {
-        if (!testing) {
+    public Connection getConnection() throws SQLException {
+        if (Config.ENVIRONMENT.equals("Testing")) {
             return DriverManager.getConnection(
                     Config.env().getDb(),
                     Config.env().getUsername(),
@@ -43,15 +43,15 @@ public class ConnectionUtility {
         );
     }
 
-    public boolean createTables(boolean testing) {
-        return doQueries(createFilename, testing);
+    public boolean createTables() {
+        return doQueries(createFilename);
     }
 
-    public boolean dropTables(boolean testing) {
-        return doQueries(dropFilename, testing);
+    public boolean dropTables() {
+        return doQueries(dropFilename);
     }
 
-    private boolean doQueries(String filename, boolean testing) {
+    private boolean doQueries(String filename) {
         List<String> queries = new ArrayList<>();
         String line = null;
 
@@ -69,7 +69,7 @@ public class ConnectionUtility {
             return false;
         }
 
-        try (Connection c = getConnection(testing)) {
+        try (Connection c = getConnection()) {
             for (String query : queries) {
                 PreparedStatement ps = c.prepareStatement(query);
                 ps.execute();

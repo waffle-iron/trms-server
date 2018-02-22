@@ -8,6 +8,15 @@ abstract class Model implements ModelObject {
     private Date dateCreated;
     private Date lastUpdated;
 
+    public Model() {
+    }
+
+    public Model(Long id, Date dateCreated, Date lastUpdated) {
+        this.id = id;
+        this.dateCreated = dateCreated;
+        this.lastUpdated = lastUpdated;
+    }
+
     @Override
     public Long getId() {
         return null;
@@ -35,6 +44,7 @@ abstract class Model implements ModelObject {
 
     public void updateTimeStamps() {
         lastUpdated = new Date();
+
         if (dateCreated == null) {
             dateCreated = new Date();
         }

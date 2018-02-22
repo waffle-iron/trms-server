@@ -4,34 +4,35 @@ import app.models.EventType;
 
 import java.sql.ResultSet;
 
-public class EventTypeDao implements Crud<EventType> {
+public class EventTypeDao extends Crud<EventType> {
+
     @Override
-    public EventType fetch() {
+    EventType fetch(int id) {
         return null;
     }
 
     @Override
-    public EventType fetchAll() {
+    EventType fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    public EventType create() {
+    EventType create(EventType eventType) {
         return null;
     }
 
     @Override
-    public EventType update() {
+    EventType update(EventType eventType) {
         return null;
     }
 
     @Override
-    public EventType delete() {
+    EventType delete(EventType eventType) {
         return null;
     }
 
     @Override
-    public EventType buildObject(EventType eventType, ResultSet resultSet) {
+    EventType buildObject(EventType eventType, ResultSet resultSet) {
         return null;
     }
 }

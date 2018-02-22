@@ -4,34 +4,35 @@ import app.models.Reimbursement;
 
 import java.sql.ResultSet;
 
-public class ReimbursementDao implements Crud<Reimbursement> {
+public class ReimbursementDao extends Crud<Reimbursement> {
+
     @Override
-    public Reimbursement fetch() {
+    Reimbursement fetch(int id) {
         return null;
     }
 
     @Override
-    public Reimbursement fetchAll() {
+    Reimbursement fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    public Reimbursement create() {
+    Reimbursement create(Reimbursement reimbursement) {
         return null;
     }
 
     @Override
-    public Reimbursement update() {
+    Reimbursement update(Reimbursement reimbursement) {
         return null;
     }
 
     @Override
-    public Reimbursement delete() {
+    Reimbursement delete(Reimbursement reimbursement) {
         return null;
     }
 
     @Override
-    public Reimbursement buildObject(Reimbursement reimbursement, ResultSet resultSet) {
+    Reimbursement buildObject(Reimbursement reimbursement, ResultSet resultSet) {
         return null;
     }
 }
