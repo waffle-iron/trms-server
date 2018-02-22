@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class UserDaoTest extends TestCase {
 
@@ -31,7 +31,6 @@ public class UserDaoTest extends TestCase {
     @Test
     public void create() {
         User user = SeedFactory.createUser();
-        System.out.println(DaoUtility.getUserDao().create(user));
         assertTrue(DaoUtility.getUserDao().create(user));
     }
 

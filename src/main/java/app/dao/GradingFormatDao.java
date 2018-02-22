@@ -31,9 +31,4 @@ public class GradingFormatDao extends Crud<GradingFormat> {
     boolean delete(GradingFormat gradingFormat) {
         return false;
     }
-
-    @Override
-    GradingFormat buildObject(GradingFormat gradingFormat, ResultSet resultSet) {
-        return null;
-    }
 }

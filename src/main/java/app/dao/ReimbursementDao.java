@@ -2,7 +2,6 @@ package app.dao;
 
 import app.models.Reimbursement;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 public class ReimbursementDao extends Crud<Reimbursement> {
@@ -32,8 +31,4 @@ public class ReimbursementDao extends Crud<Reimbursement> {
         return false;
     }
 
-    @Override
-    Reimbursement buildObject(Reimbursement reimbursement, ResultSet resultSet) {
-        return null;
-    }
 }

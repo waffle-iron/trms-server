@@ -14,13 +14,11 @@ public class TestCase {
 
     @After
     public void tearDown() {
+        dropTables();
         Config.ENVIRONMENT = "Development";
     }
 
     protected boolean createTables() {
-        if (!dropTables()) {
-            dropTables();
-        }
         return ConnectionUtility.getInstance().createTables();
     }
 

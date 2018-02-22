@@ -30,8 +30,4 @@ public class EventDao extends Crud<EventDao> {
         return false;
     }
 
-    @Override
-    EventDao buildObject(EventDao eventDao, ResultSet resultSet) {
-        return null;
-    }
 }

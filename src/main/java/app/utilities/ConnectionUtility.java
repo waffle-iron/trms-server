@@ -15,9 +15,6 @@ import java.util.List;
 
 public class ConnectionUtility {
 
-    private String createFilename = "src/main/resources/create.sql";
-    private String dropFilename = "src/main/resources/drop.sql";
-
     private static ConnectionUtility ourInstance = new ConnectionUtility();
 
     public static ConnectionUtility getInstance() {
@@ -28,7 +25,7 @@ public class ConnectionUtility {
     }
 
     public Connection getConnection() throws SQLException {
-        if (Config.ENVIRONMENT.equals("Testing")) {
+        if (!Config.ENVIRONMENT.equals("Testing")) {
             return DriverManager.getConnection(
                     Config.env().getDb(),
                     Config.env().getUsername(),
@@ -44,10 +41,12 @@ public class ConnectionUtility {
     }
 
     public boolean createTables() {
+        String createFilename = "src/main/resources/create.sql";
         return doQueries(createFilename);
     }
 
     public boolean dropTables() {
+        String dropFilename = "src/main/resources/drop.sql";
         return doQueries(dropFilename);
     }
 

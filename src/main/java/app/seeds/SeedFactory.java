@@ -5,6 +5,7 @@ import app.models.User;
 import com.github.javafaker.Faker;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 public class SeedFactory {
 
@@ -22,16 +23,12 @@ public class SeedFactory {
                 fake().name().lastName(),
                 fake().company().profession(),
                 fake().internet().safeEmailAddress(),
-                new Role(2, unix(), unix(), "Employee"),
+                new Role(2, LocalDateTime.now(), LocalDateTime.now(), "Employee"),
                 "secret"
         );
     }
 
     public static Role createRole(String role) {
         return new Role(role);
-    }
-
-    public static int unix() {
-        return (int) Instant.now().getEpochSecond();
     }
 }

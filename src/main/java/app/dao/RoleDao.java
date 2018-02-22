@@ -1,47 +1,79 @@
 package app.dao;
 
 import app.models.Role;
+import app.utilities.DateConverter;
+import sun.util.calendar.LocalGregorianCalendar;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RoleDao extends Crud<Role> {
 
-    private final String fetchQuery = "SELECT * FROM roles WHERE id = ?";
-    private final String createQuery = "INSERT INTO roles (name, created_on) VALUES(?, to_timestamp(?))";
-
     @Override
     Role fetch(int id) {
         Role role = new Role();
-
         try (Connection c = connection()) {
-            PreparedStatement ps = c.prepareStatement(fetchQuery);
+            String query = "SELECT * FROM roles WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            return buildObject(role, rs);
+            if (rs.next()) {
+                role.setId(rs.getInt("id"));
+                role.setName(rs.getString("name"));
+                role.setDateCreated(DateConverter.dateToLocalDateTime(rs.getTimestamp("created_on")));
+                if (rs.getTimestamp("updated_on") == null) {
+                    role.setLastUpdated(null);
+                } else {
+                    role.setLastUpdated(DateConverter.dateToLocalDateTime(rs.getTimestamp("updated_on")));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return role;
     }
 
     @Override
     List<Role> fetchAll(int limit, int offset) {
-        return null;
+        List<Role> roles = new ArrayList<>();
+        try (Connection c = connection()) {
+            String query = "SELECT * FROM roles LIMIT ? OFFSET ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, limit);
+            ps.setInt(2, offset);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Role role = new Role();
+                role.setId(rs.getInt("id"));
+                role.setName(rs.getString("name"));
+                role.setDateCreated(DateConverter.dateToLocalDateTime(rs.getTimestamp("created_on")));
+                role.setLastUpdated(DateConverter.dateToLocalDateTime(rs.getTimestamp("updated_on")));
+                roles.add(role);
+            }
+        } catch (SQLException e)
+
+        {
+            e.printStackTrace();
+        }
+        return roles;
     }
 
     @Override
     boolean create(Role role) {
         role.updateTimeStamps();
         try (Connection c = connection()) {
-            PreparedStatement ps = c.prepareStatement(createQuery);
+            String query = "INSERT INTO roles (name, created_on) VALUES(?, ?)";
+            PreparedStatement ps = c.prepareStatement(query);
             ps.setString(1, role.getName());
-            ps.setInt(2, role.getDateCreated());
-            return ps.execute();
+            ps.setTimestamp(2, DateConverter.dateToSQL(role.getDateCreated()));
+            ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
+
+        return true;
     }
 
     @Override
@@ -52,20 +84,5 @@ public class RoleDao extends Crud<Role> {
     @Override
     boolean delete(Role role) {
         return false;
-    }
-
-    @Override
-    Role buildObject(Role role, ResultSet resultSet) throws SQLException {
-        while (resultSet.next()) {
-            try {
-                role.setId(resultSet.getInt("id"));
-                role.setName(resultSet.getString("name"));
-                role.setDateCreated(resultSet.getInt("created_on"));
-                role.setLastUpdated(resultSet.getInt("updated_on"));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return role;
     }
 }

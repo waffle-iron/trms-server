@@ -1,17 +1,18 @@
 package app.models;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 abstract class Model implements ModelObject {
 
     private int id;
-    private int dateCreated;
-    private int lastUpdated;
+    private LocalDateTime dateCreated;
+    private LocalDateTime lastUpdated;
 
     public Model() {
     }
 
-    public Model(int id, int dateCreated, int lastUpdated) {
+    public Model(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated) {
         this.id = id;
         this.dateCreated = dateCreated;
         this.lastUpdated = lastUpdated;
@@ -27,31 +28,27 @@ abstract class Model implements ModelObject {
         this.id = id;
     }
 
-    public int getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(int dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public int getLastUpdated() {
+    public LocalDateTime getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(int lastUpdated) {
+    public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
     public void updateTimeStamps() {
-        lastUpdated = unix();
+        lastUpdated = LocalDateTime.now();
 
-        if (dateCreated == 0) {
-            dateCreated = unix();
+        if (dateCreated == null) {
+            dateCreated = LocalDateTime.now();
         }
-    }
-
-    private int unix() {
-        return (int) Instant.now().getEpochSecond();
     }
 }

@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import static org.junit.Assert.*;
 
@@ -22,7 +22,7 @@ public class EventTest extends TestCase {
     @Test
     public void constructor() {
         byte[] bytes = {};
-        int date = SeedFactory.unix();
+        LocalDateTime date = LocalDateTime.now();
         Event event = new Event(
                 1,
                 date,
@@ -64,7 +64,7 @@ public class EventTest extends TestCase {
 
     @Test
     public void dateTime() {
-        int date = SeedFactory.unix();
+        LocalDateTime date = LocalDateTime.now();
         event.setDatetime(date);
         assertEquals(date, event.getDatetime());
     }
@@ -108,7 +108,7 @@ public class EventTest extends TestCase {
 
     @Test
     public void completedOn() {
-        int date = SeedFactory.unix();
+        LocalDateTime date = LocalDateTime.now();
         event.setCompletedOn(date);
         assertEquals(date, event.getCompletedOn());
     }

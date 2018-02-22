@@ -1,5 +1,6 @@
 package app.models;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class GradingFormat extends Model {
@@ -10,7 +11,7 @@ public class GradingFormat extends Model {
     public GradingFormat() {
     }
 
-    public GradingFormat(int id, int dateCreated, int lastUpdated, String format, String description) {
+    public GradingFormat(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, String format, String description) {
         super(id, dateCreated, lastUpdated);
         this.format = format;
         this.description = description;

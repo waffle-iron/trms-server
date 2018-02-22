@@ -5,6 +5,7 @@ import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -20,7 +21,7 @@ public class GradingFormatTest extends TestCase {
 
     @Test
     public void constructor() {
-        int date = SeedFactory.unix();
+        LocalDateTime date = LocalDateTime.now();
         GradingFormat gf = new GradingFormat(
                 1,
                 date,

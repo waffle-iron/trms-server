@@ -5,22 +5,24 @@ import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.*;
 
 public class ReimbursementTest extends TestCase {
 
     private Reimbursement reimbursement;
-    private int date;
+    private LocalDateTime date;
 
     @Before
     public void setUp() {
         reimbursement = new Reimbursement();
-        date = SeedFactory.unix();
+        date = LocalDateTime.now();
     }
 
     @Test
     public void constructor() {
-        int date = SeedFactory.unix();
+        LocalDateTime date = LocalDateTime.now();
         Reimbursement r = new Reimbursement(
                 1,
                 date,

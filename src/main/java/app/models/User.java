@@ -1,6 +1,6 @@
 package app.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class User extends Model {
@@ -26,7 +26,7 @@ public class User extends Model {
         this.password = password;
     }
 
-    public User(int id, int dateCreated, int lastUpdated, String firstName, String lastName, String jobTitle, String email, Role role, String password, User directSupervisor, User departmentHead) {
+    public User(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, String firstName, String lastName, String jobTitle, String email, Role role, String password, User directSupervisor, User departmentHead) {
         super(id, dateCreated, lastUpdated);
         this.firstName = firstName;
         this.lastName = lastName;

@@ -1,10 +1,11 @@
 package app.dao;
 
 import app.models.User;
-import app.seeds.SeedFactory;
+import app.utilities.DateConverter;
 
-import java.sql.*;
-import java.time.LocalDate;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserDao extends Crud<User> {
@@ -16,8 +17,9 @@ public class UserDao extends Crud<User> {
             "email, " +
             "role_id, " +
             "password, " +
-            "created_on " +
-            ") VALUES (?, ?, ?, ?, ?, ?, to_timestamp(?))";
+            "created_on, " +
+            "updated_on" +
+            ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     @Override
     User fetch(int id) {
@@ -31,6 +33,8 @@ public class UserDao extends Crud<User> {
 
     @Override
     boolean create(User user) {
+        user.updateTimeStamps();
+        System.out.println(user);
         try (Connection c = connection()) {
             PreparedStatement ps = c.prepareStatement(createQuery);
             ps.setString(1, user.getFirstName());
@@ -39,13 +43,16 @@ public class UserDao extends Crud<User> {
             ps.setString(4, user.getEmail());
             ps.setLong(5, user.getRole().getId());
             ps.setString(6, user.getPassword());
-            ps.setInt(7, SeedFactory.unix());
-            return ps.execute();
+            ps.setTimestamp(7, DateConverter.dateToSQL(user.getDateCreated()));
+            ps.setTimestamp(8, DateConverter.dateToSQL(user.getLastUpdated()));
+            ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("failing");
             return false;
         }
+
+        return true;
     }
 
     @Override
@@ -58,8 +65,4 @@ public class UserDao extends Crud<User> {
         return false;
     }
 
-    @Override
-    User buildObject(User user, ResultSet resultSet) {
-        return null;
-    }
 }

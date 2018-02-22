@@ -1,11 +1,9 @@
 package app.models;
 
-import app.seeds.SeedFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -13,7 +11,7 @@ import static org.junit.Assert.assertNotEquals;
 public class ModelTest {
 
     private TestClass tc;
-    int date = SeedFactory.unix();
+    LocalDateTime date = LocalDateTime.now();
 
     @Before
     public void setUp() {

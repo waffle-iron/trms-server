@@ -1,28 +1,28 @@
 package app.models;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 
 public class Event extends Model {
 
     private EventType eventType;
-    private int datetime;
+    private LocalDateTime datetime;
     private String location;
     private String description;
     private String justification;
     private BigDecimal cost;
     private GradingFormat gradingFormat;
     private String passingGradeCutoff;
-    private int completedOn;
+    private LocalDateTime completedOn;
     private String status;
     private byte[] attachment;
 
     public Event() {
     }
 
-    public Event(EventType eventType, int datetime, String location, String description, String justification, BigDecimal cost, GradingFormat gradingFormat, String passingGradeCutoff, int completedOn, String status, byte[] attachment) {
+    public Event(EventType eventType, LocalDateTime datetime, String location, String description, String justification, BigDecimal cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
         this.eventType = eventType;
         this.datetime = datetime;
         this.location = location;
@@ -36,7 +36,7 @@ public class Event extends Model {
         this.attachment = attachment;
     }
 
-    public Event(int id, int dateCreated, int lastUpdated, EventType eventType, int datetime, String location, String description, String justification, BigDecimal cost, GradingFormat gradingFormat, String passingGradeCutoff, int completedOn, String status, byte[] attachment) {
+    public Event(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, EventType eventType, LocalDateTime datetime, String location, String description, String justification, BigDecimal cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
         super(id, dateCreated, lastUpdated);
         this.eventType = eventType;
         this.datetime = datetime;
@@ -59,11 +59,11 @@ public class Event extends Model {
         this.eventType = eventType;
     }
 
-    public int getDatetime() {
+    public LocalDateTime getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(int datetime) {
+    public void setDatetime(LocalDateTime datetime) {
         this.datetime = datetime;
     }
 
@@ -115,11 +115,11 @@ public class Event extends Model {
         this.passingGradeCutoff = passingGradeCutoff;
     }
 
-    public int getCompletedOn() {
+    public LocalDateTime getCompletedOn() {
         return completedOn;
     }
 
-    public void setCompletedOn(int completedOn) {
+    public void setCompletedOn(LocalDateTime completedOn) {
         this.completedOn = completedOn;
     }
 
@@ -161,15 +161,15 @@ public class Event extends Model {
         if (this == o) return true;
         if (!(o instanceof Event)) return false;
         Event event = (Event) o;
-        return getDatetime() == event.getDatetime() &&
-                getCompletedOn() == event.getCompletedOn() &&
-                Objects.equals(getEventType(), event.getEventType()) &&
+        return Objects.equals(getEventType(), event.getEventType()) &&
+                Objects.equals(getDatetime(), event.getDatetime()) &&
                 Objects.equals(getLocation(), event.getLocation()) &&
                 Objects.equals(getDescription(), event.getDescription()) &&
                 Objects.equals(getJustification(), event.getJustification()) &&
                 Objects.equals(getCost(), event.getCost()) &&
                 Objects.equals(getGradingFormat(), event.getGradingFormat()) &&
                 Objects.equals(getPassingGradeCutoff(), event.getPassingGradeCutoff()) &&
+                Objects.equals(getCompletedOn(), event.getCompletedOn()) &&
                 Objects.equals(getStatus(), event.getStatus()) &&
                 Arrays.equals(getAttachment(), event.getAttachment());
     }

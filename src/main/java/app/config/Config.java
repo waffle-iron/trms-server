@@ -6,6 +6,8 @@ public class Config {
 
     public static String ENVIRONMENT = "Development";
 
+    public static int PAGINATE = 10;
+
     private Dotenv dotEnv;
 
     private String db;

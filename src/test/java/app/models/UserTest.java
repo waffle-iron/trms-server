@@ -4,6 +4,7 @@ import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -17,7 +18,7 @@ public class UserTest extends TestCase {
 
     @Test
     public void constructor() {
-        int date = SeedFactory.unix();
+        LocalDateTime date = LocalDateTime.now();
         User u = new User(
                 1,
                 date,

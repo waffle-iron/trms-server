@@ -4,6 +4,7 @@ import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Date;
 
@@ -22,7 +23,7 @@ public class RoleTest extends TestCase {
 
     @Test
     public void constructor() {
-        int date = SeedFactory.unix();
+        LocalDateTime date = LocalDateTime.now();
         Role r = new Role(
                 1,
                 date,
