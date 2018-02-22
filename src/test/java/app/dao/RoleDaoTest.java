@@ -34,13 +34,15 @@ public class RoleDaoTest extends TestCase {
 
     @Test
     public void update() {
+        Role benco = DaoUtility.getRoleDao().fetch(1);
+        benco.setName("BenCo");
+        DaoUtility.getRoleDao().update(benco);
+        assertEquals("BenCo", DaoUtility.getRoleDao().fetch(1).getName());
     }
 
     @Test
     public void delete() {
-    }
-
-    @Test
-    public void buildObject() {
+        Role benco = DaoUtility.getRoleDao().fetch(1);
+        assertTrue(DaoUtility.getRoleDao().delete(benco));
     }
 }

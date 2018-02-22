@@ -2,9 +2,11 @@ package app.dao;
 
 import app.models.Role;
 import app.utilities.DateConverter;
-import sun.util.calendar.LocalGregorianCalendar;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,11 +80,32 @@ public class RoleDao extends Crud<Role> {
 
     @Override
     boolean update(Role role) {
-        return false;
+        role.updateTimeStamps();
+        try (Connection c = connection()) {
+            String query = "UPDATE roles SET name = ?, updated_on = ? WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, role.getName());
+            ps.setTimestamp(2, DateConverter.dateToSQL(role.getLastUpdated()));
+            ps.setInt(3, role.getId());
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
     boolean delete(Role role) {
-        return false;
+        try (Connection c = connection()) {
+            String query = "DELETE FROM roles WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, role.getId());
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

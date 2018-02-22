@@ -1,6 +1,5 @@
 package app.models;
 
-import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +39,34 @@ public class ReimbursementTest extends TestCase {
         assertEquals(1, r.getId());
         assertEquals(date, r.getDateCreated());
         assertEquals(date, r.getLastUpdated());
+        assertTrue(r.getEmployee() instanceof User);
+        assertTrue(r.getEvent() instanceof Event);
+        assertEquals(date, r.getDirectSupervisorApprovedOn());
+        assertFalse(r.isDirectSupervisorAutoApproved());
+        assertEquals(date, r.getDepartmentHeadApprovedOn());
+        assertFalse(r.isDepartmentHeadAutoApproved());
+        assertEquals(date, r.getBenCoApprovedOn());
+        assertEquals(date, r.getDeniedOn());
+        assertEquals("denied reason", r.getDeniedReason());
+    }
+
+    @Test
+    public void constructor2() {
+        LocalDateTime date = LocalDateTime.now();
+        Reimbursement r = new Reimbursement(
+                new User(),
+                new Event(),
+                date,
+                false,
+                date,
+                false,
+                date,
+                date,
+                "denied reason"
+        );
+        assertEquals(0, r.getId());
+        assertEquals(null, r.getDateCreated());
+        assertEquals(null, r.getLastUpdated());
         assertTrue(r.getEmployee() instanceof User);
         assertTrue(r.getEvent() instanceof Event);
         assertEquals(date, r.getDirectSupervisorApprovedOn());

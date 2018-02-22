@@ -56,6 +56,39 @@ public class EventTest extends TestCase {
     }
 
     @Test
+    public void constructor1() {
+        byte[] bytes = {};
+        LocalDateTime date = LocalDateTime.now();
+        Event event = new Event(
+                new EventType(),
+                date,
+                "location",
+                "description",
+                "justification",
+                new BigDecimal(1000),
+                new GradingFormat(),
+                "passing grade cutoff",
+                date,
+                "status",
+                bytes
+        );
+        assertEquals(0, event.getId());
+        assertEquals(null, event.getDateCreated());
+        assertEquals(null, event.getLastUpdated());
+        assertTrue(event.getEventType() instanceof EventType);
+        assertEquals(date, event.getDatetime());
+        assertEquals("location", event.getLocation());
+        assertEquals("description", event.getDescription());
+        assertEquals("justification", event.getJustification());
+        assertEquals(new BigDecimal(1000), event.getCost());
+        assertTrue(event.getGradingFormat() instanceof GradingFormat);
+        assertEquals("passing grade cutoff", event.getPassingGradeCutoff());
+        assertEquals(date, event.getCompletedOn());
+        assertEquals("status", event.getStatus());
+        assertEquals(bytes, event.getAttachment());
+    }
+
+    @Test
     public void eventTypeId() {
         EventType eventType = new EventType();
         event.setEventType(eventType);
