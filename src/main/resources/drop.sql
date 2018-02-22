@@ -1,8 +1,7 @@
-DROP TYPE IF EXISTS GRADING_FORMAT CASCADE;
-DROP TABLE IF EXISTS grading_formats CASCADE;
-DROP TYPE IF EXISTS EVENT_STATUS CASCADE;
-DROP TABLE IF EXISTS events CASCADE;
-DROP TABLE IF EXISTS reimbursements CASCADE;
-DROP TABLE IF EXISTS event_types CASCADE;
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS roles CASCADE;
+drop table if exists grading_formats cascade;
+drop type if exists event_status cascade;
+drop table if exists events cascade;
+drop table if exists reimbursements cascade;
+drop table if exists event_types cascade;
+drop table if exists users cascade;
+drop table if exists roles cascade;
