@@ -1,6 +1,5 @@
 package app.models;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,25 +7,21 @@ public class Reimbursement extends Model {
 
     private User employee;
     private Event event;
-    private LocalDate createdOn;
-    private LocalDate updatedOn;
-    private LocalDate directSupervisorApprovedOn;
+    private Date directSupervisorApprovedOn;
     private boolean directSupervisorAutoApproved;
-    private LocalDate departmentHeadApprovedOn;
+    private Date departmentHeadApprovedOn;
     private boolean departmentHeadAutoApproved;
-    private LocalDate benCoApprovedOn;
-    private LocalDate deniedOn;
+    private Date benCoApprovedOn;
+    private Date deniedOn;
     private String deniedReason;
 
     public Reimbursement() {
     }
 
-    public Reimbursement(Long id, Date dateCreated, Date lastUpdated, User employee, Event event, LocalDate createdOn, LocalDate updatedOn, LocalDate directSupervisorApprovedOn, boolean directSupervisorAutoApproved, LocalDate departmentHeadApprovedOn, boolean departmentHeadAutoApproved, LocalDate benCoApprovedOn, LocalDate deniedOn, String deniedReason) {
+    public Reimbursement(Long id, Date dateCreated, Date lastUpdated, User employee, Event event, Date directSupervisorApprovedOn, boolean directSupervisorAutoApproved, Date departmentHeadApprovedOn, boolean departmentHeadAutoApproved, Date benCoApprovedOn, Date deniedOn, String deniedReason) {
         super(id, dateCreated, lastUpdated);
         this.employee = employee;
         this.event = event;
-        this.createdOn = createdOn;
-        this.updatedOn = updatedOn;
         this.directSupervisorApprovedOn = directSupervisorApprovedOn;
         this.directSupervisorAutoApproved = directSupervisorAutoApproved;
         this.departmentHeadApprovedOn = departmentHeadApprovedOn;
@@ -52,27 +47,11 @@ public class Reimbursement extends Model {
         this.event = event;
     }
 
-    public LocalDate getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(LocalDate createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public LocalDate getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setUpdatedOn(LocalDate updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
-    public LocalDate getDirectSupervisorApprovedOn() {
+    public Date getDirectSupervisorApprovedOn() {
         return directSupervisorApprovedOn;
     }
 
-    public void setDirectSupervisorApprovedOn(LocalDate directSupervisorApprovedOn) {
+    public void setDirectSupervisorApprovedOn(Date directSupervisorApprovedOn) {
         this.directSupervisorApprovedOn = directSupervisorApprovedOn;
     }
 
@@ -84,11 +63,11 @@ public class Reimbursement extends Model {
         this.directSupervisorAutoApproved = directSupervisorAutoApproved;
     }
 
-    public LocalDate getDepartmentHeadApprovedOn() {
+    public Date getDepartmentHeadApprovedOn() {
         return departmentHeadApprovedOn;
     }
 
-    public void setDepartmentHeadApprovedOn(LocalDate departmentHeadApprovedOn) {
+    public void setDepartmentHeadApprovedOn(Date departmentHeadApprovedOn) {
         this.departmentHeadApprovedOn = departmentHeadApprovedOn;
     }
 
@@ -100,19 +79,19 @@ public class Reimbursement extends Model {
         this.departmentHeadAutoApproved = departmentHeadAutoApproved;
     }
 
-    public LocalDate getBenCoApprovedOn() {
+    public Date getBenCoApprovedOn() {
         return benCoApprovedOn;
     }
 
-    public void setBenCoApprovedOn(LocalDate benCoApprovedOn) {
+    public void setBenCoApprovedOn(Date benCoApprovedOn) {
         this.benCoApprovedOn = benCoApprovedOn;
     }
 
-    public LocalDate getDeniedOn() {
+    public Date getDeniedOn() {
         return deniedOn;
     }
 
-    public void setDeniedOn(LocalDate deniedOn) {
+    public void setDeniedOn(Date deniedOn) {
         this.deniedOn = deniedOn;
     }
 
@@ -127,10 +106,8 @@ public class Reimbursement extends Model {
     @Override
     public String toString() {
         return "Reimbursement{" +
-                ", employee=" + employee +
+                "employee=" + employee +
                 ", event=" + event +
-                ", createdOn=" + createdOn +
-                ", updatedOn=" + updatedOn +
                 ", directSupervisorApprovedOn=" + directSupervisorApprovedOn +
                 ", directSupervisorAutoApproved=" + directSupervisorAutoApproved +
                 ", departmentHeadApprovedOn=" + departmentHeadApprovedOn +
@@ -146,13 +123,10 @@ public class Reimbursement extends Model {
         if (this == o) return true;
         if (!(o instanceof Reimbursement)) return false;
         Reimbursement that = (Reimbursement) o;
-        return getId() == that.getId() &&
-                isDirectSupervisorAutoApproved() == that.isDirectSupervisorAutoApproved() &&
+        return isDirectSupervisorAutoApproved() == that.isDirectSupervisorAutoApproved() &&
                 isDepartmentHeadAutoApproved() == that.isDepartmentHeadAutoApproved() &&
                 Objects.equals(getEmployee(), that.getEmployee()) &&
                 Objects.equals(getEvent(), that.getEvent()) &&
-                Objects.equals(getCreatedOn(), that.getCreatedOn()) &&
-                Objects.equals(getUpdatedOn(), that.getUpdatedOn()) &&
                 Objects.equals(getDirectSupervisorApprovedOn(), that.getDirectSupervisorApprovedOn()) &&
                 Objects.equals(getDepartmentHeadApprovedOn(), that.getDepartmentHeadApprovedOn()) &&
                 Objects.equals(getBenCoApprovedOn(), that.getBenCoApprovedOn()) &&
@@ -163,6 +137,6 @@ public class Reimbursement extends Model {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getEmployee(), getEvent(), getCreatedOn(), getUpdatedOn(), getDirectSupervisorApprovedOn(), isDirectSupervisorAutoApproved(), getDepartmentHeadApprovedOn(), isDepartmentHeadAutoApproved(), getBenCoApprovedOn(), getDeniedOn(), getDeniedReason());
+        return Objects.hash(getEmployee(), getEvent(), getDirectSupervisorApprovedOn(), isDirectSupervisorAutoApproved(), getDepartmentHeadApprovedOn(), isDepartmentHeadAutoApproved(), getBenCoApprovedOn(), getDeniedOn(), getDeniedReason());
     }
 }

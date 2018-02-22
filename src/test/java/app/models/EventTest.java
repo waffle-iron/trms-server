@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -19,6 +19,42 @@ public class EventTest extends TestCase {
     }
 
     @Test
+    public void constructor() {
+        byte[] bytes = {};
+        Date date = new Date();
+        Event event = new Event(
+                1L,
+                date,
+                date,
+                new EventType(),
+                date,
+                "location",
+                "description",
+                "justification",
+                new BigDecimal(1000),
+                new GradingFormat(),
+                "passing grade cutoff",
+                date,
+                "status",
+                bytes
+        );
+        assertEquals(Long.valueOf(1), event.getId());
+        assertEquals(date, event.getDateCreated());
+        assertEquals(date, event.getLastUpdated());
+        assertTrue(event.getEventType() instanceof EventType);
+        assertEquals(date, event.getDatetime());
+        assertEquals("location", event.getLocation());
+        assertEquals("description", event.getDescription());
+        assertEquals("justification", event.getJustification());
+        assertEquals(new BigDecimal(1000), event.getCost());
+        assertTrue(event.getGradingFormat() instanceof GradingFormat);
+        assertEquals("passing grade cutoff", event.getPassingGradeCutoff());
+        assertEquals(date, event.getCompletedOn());
+        assertEquals("status", event.getStatus());
+        assertEquals(bytes, event.getAttachment());
+    }
+
+    @Test
     public void eventTypeId() {
         EventType eventType = new EventType();
         event.setEventType(eventType);
@@ -27,7 +63,7 @@ public class EventTest extends TestCase {
 
     @Test
     public void dateTime() {
-        LocalDate date = LocalDate.now();
+        Date date = new Date();
         event.setDatetime(date);
         assertEquals(date, event.getDatetime());
     }
@@ -71,7 +107,7 @@ public class EventTest extends TestCase {
 
     @Test
     public void completedOn() {
-        LocalDate date = LocalDate.now();
+        Date date = new Date();
         event.setCompletedOn(date);
         assertEquals(date, event.getCompletedOn());
     }

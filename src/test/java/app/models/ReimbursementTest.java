@@ -4,23 +4,54 @@ import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
 public class ReimbursementTest extends TestCase {
 
     private Reimbursement reimbursement;
-    private LocalDate date;
+    private Date date;
 
     @Before
     public void setUp() {
         reimbursement = new Reimbursement();
-        date = LocalDate.now();
+        date = new Date();
     }
 
     @Test
     public void constructor() {
+        Date date = new Date();
+        Reimbursement r = new Reimbursement(
+                1L,
+                date,
+                date,
+                new User(),
+                new Event(),
+                date,
+                false,
+                date,
+                false,
+                date,
+                date,
+                "denied reason"
+        );
+        assertEquals(Long.valueOf(1), r.getId());
+        assertEquals(date, r.getDateCreated());
+        assertEquals(date, r.getLastUpdated());
+        assertTrue(r.getEmployee() instanceof User);
+        assertTrue(r.getEvent() instanceof Event);
+        assertEquals(date, r.getDirectSupervisorApprovedOn());
+        assertFalse(r.isDirectSupervisorAutoApproved());
+        assertEquals(date, r.getDepartmentHeadApprovedOn());
+        assertFalse(r.isDepartmentHeadAutoApproved());
+        assertEquals(date, r.getBenCoApprovedOn());
+        assertEquals(date, r.getDeniedOn());
+        assertEquals("denied reason", r.getDeniedReason());
+    }
+
+    @Test
+    public void constructor1() {
         Reimbursement reimbursement = new Reimbursement();
         assertTrue(reimbursement instanceof Reimbursement);
     }
@@ -37,18 +68,6 @@ public class ReimbursementTest extends TestCase {
         Event event = new Event();
         reimbursement.setEvent(event);
         assertEquals(event, reimbursement.getEvent());
-    }
-
-    @Test
-    public void createdOn() {
-        reimbursement.setCreatedOn(date);
-        assertEquals(date, reimbursement.getCreatedOn());
-    }
-
-    @Test
-    public void updatedOn() {
-        reimbursement.setUpdatedOn(date);
-        assertEquals(date, reimbursement.getUpdatedOn());
     }
 
     @Test

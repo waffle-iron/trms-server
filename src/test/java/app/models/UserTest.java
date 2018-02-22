@@ -3,7 +3,7 @@ package app.models;
 import app.utilities.TestCase;
 import org.junit.Test;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +12,36 @@ public class UserTest extends TestCase {
     @Test
     public void hasEmptyConstructor() {
         assertTrue(new User() instanceof User);
+    }
+
+    @Test
+    public void constructor() {
+        Date date = new Date();
+        User u = new User(
+                1L,
+                date,
+                date,
+                "firstname",
+                "lastname",
+                "job title",
+                "email",
+                new Role(),
+                "password",
+                new User(),
+                new User()
+        );
+        assertEquals(Long.valueOf(1), u.getId());
+        assertEquals(date, u.getDateCreated());
+        assertEquals(date, u.getLastUpdated());
+        assertEquals("firstname", u.getFirstName());
+        assertEquals("lastname", u.getLastName());
+        assertEquals("job title", u.getJobTitle());
+        assertEquals("email", u.getEmail());
+        assertTrue(u.getRole() instanceof Role);
+        assertEquals("password", u.getPassword());
+        assertTrue(u.getDirectSupervisor() instanceof User);
+        assertTrue(u.getDepartmentHead() instanceof User);
+
     }
 
     @Test
@@ -70,22 +100,6 @@ public class UserTest extends TestCase {
         User departmentHead = new User();
         user.setDepartmentHead(departmentHead);
         assertTrue(user.getDepartmentHead().equals(departmentHead));
-    }
-
-    @Test
-    public void createdOn() {
-        User user = new User();
-        LocalDate date = LocalDate.now();
-        user.setCreatedOn(date);
-        assertEquals(date, user.getCreatedOn());
-    }
-
-    @Test
-    public void updatedOn() {
-        User user = new User();
-        LocalDate date = LocalDate.now();
-        user.setUpdatedOn(date);
-        assertEquals(date, user.getUpdatedOn());
     }
 
     @Test

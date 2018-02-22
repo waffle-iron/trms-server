@@ -1,7 +1,6 @@
 package app.models;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
@@ -9,21 +8,21 @@ import java.util.Objects;
 public class Event extends Model {
 
     private EventType eventType;
-    private LocalDate datetime;
+    private Date datetime;
     private String location;
     private String description;
     private String justification;
     private BigDecimal cost;
     private GradingFormat gradingFormat;
     private String passingGradeCutoff;
-    private LocalDate completedOn;
+    private Date completedOn;
     private String status;
     private byte[] attachment;
 
     public Event() {
     }
 
-    public Event(Long id, Date dateCreated, Date lastUpdated, EventType eventType, LocalDate datetime, String location, String description, String justification, BigDecimal cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDate completedOn, String status, byte[] attachment) {
+    public Event(Long id, Date dateCreated, Date lastUpdated, EventType eventType, Date datetime, String location, String description, String justification, BigDecimal cost, GradingFormat gradingFormat, String passingGradeCutoff, Date completedOn, String status, byte[] attachment) {
         super(id, dateCreated, lastUpdated);
         this.eventType = eventType;
         this.datetime = datetime;
@@ -46,11 +45,11 @@ public class Event extends Model {
         this.eventType = eventType;
     }
 
-    public LocalDate getDatetime() {
+    public Date getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(LocalDate datetime) {
+    public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }
 
@@ -102,11 +101,11 @@ public class Event extends Model {
         this.passingGradeCutoff = passingGradeCutoff;
     }
 
-    public LocalDate getCompletedOn() {
+    public Date getCompletedOn() {
         return completedOn;
     }
 
-    public void setCompletedOn(LocalDate completedOn) {
+    public void setCompletedOn(Date completedOn) {
         this.completedOn = completedOn;
     }
 

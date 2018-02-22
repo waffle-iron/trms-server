@@ -4,6 +4,8 @@ import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 public class EventTypeTest extends TestCase {
@@ -13,6 +15,23 @@ public class EventTypeTest extends TestCase {
     @Before
     public void setUp() {
         eventType = new EventType();
+    }
+
+    @Test
+    public void constructor() {
+        Date date = new Date();
+        EventType et = new EventType(
+                1L,
+                date,
+                date,
+                "name",
+                100
+        );
+        assertEquals(Long.valueOf(1), et.getId());
+        assertEquals(date, et.getDateCreated());
+        assertEquals(date, et.getLastUpdated());
+        assertEquals("name", et.getName());
+        assertEquals(100, et.getPercentage());
     }
 
     @Test

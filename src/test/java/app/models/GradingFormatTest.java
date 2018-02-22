@@ -4,6 +4,8 @@ import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 public class GradingFormatTest extends TestCase {
@@ -13,6 +15,23 @@ public class GradingFormatTest extends TestCase {
     @Before
     public void setUp() {
         gradingFormat = new GradingFormat();
+    }
+
+    @Test
+    public void constructor() {
+        Date date = new Date();
+        GradingFormat gf = new GradingFormat(
+                1L,
+                date,
+                date,
+                "format",
+                "description"
+        );
+        assertEquals(Long.valueOf(1), gf.getId());
+        assertEquals(date, gf.getDateCreated());
+        assertEquals(date, gf.getLastUpdated());
+        assertEquals("format", gf.getFormat());
+        assertEquals("description", gf.getDescription());
     }
 
     @Test

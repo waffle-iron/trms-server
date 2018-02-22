@@ -1,6 +1,5 @@
 package app.models;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,13 +13,11 @@ public class User extends Model {
     private String password;
     private User directSupervisor;
     private User departmentHead;
-    private LocalDate createdOn;
-    private LocalDate updatedOn;
 
     public User() {
     }
 
-    public User(Long id, Date dateCreated, Date lastUpdated, String firstName, String lastName, String jobTitle, String email, Role role, String password, User directSupervisor, User departmentHead, LocalDate createdOn, LocalDate updatedOn) {
+    public User(Long id, Date dateCreated, Date lastUpdated, String firstName, String lastName, String jobTitle, String email, Role role, String password, User directSupervisor, User departmentHead) {
         super(id, dateCreated, lastUpdated);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -30,8 +27,6 @@ public class User extends Model {
         this.password = password;
         this.directSupervisor = directSupervisor;
         this.departmentHead = departmentHead;
-        this.createdOn = createdOn;
-        this.updatedOn = updatedOn;
     }
 
     public String getFirstName() {
@@ -98,26 +93,10 @@ public class User extends Model {
         this.departmentHead = departmentHead;
     }
 
-    public LocalDate getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(LocalDate createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public LocalDate getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public void setUpdatedOn(LocalDate updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
     @Override
     public String toString() {
         return "User{" +
-                ", firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", jobTitle='" + jobTitle + '\'' +
                 ", email='" + email + '\'' +
@@ -133,8 +112,7 @@ public class User extends Model {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return getId() == user.getId() &&
-                Objects.equals(getFirstName(), user.getFirstName()) &&
+        return Objects.equals(getFirstName(), user.getFirstName()) &&
                 Objects.equals(getLastName(), user.getLastName()) &&
                 Objects.equals(getJobTitle(), user.getJobTitle()) &&
                 Objects.equals(getEmail(), user.getEmail()) &&
@@ -147,6 +125,6 @@ public class User extends Model {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getFirstName(), getLastName(), getJobTitle(), getEmail(), getRole(), getPassword(), getDirectSupervisor(), getDepartmentHead());
+        return Objects.hash(getFirstName(), getLastName(), getJobTitle(), getEmail(), getRole(), getPassword(), getDirectSupervisor(), getDepartmentHead());
     }
 }
