@@ -1,6 +1,7 @@
 package app.dao;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 public class EventDao extends Crud<EventDao> {
 
@@ -10,23 +11,23 @@ public class EventDao extends Crud<EventDao> {
     }
 
     @Override
-    EventDao fetchAll(int limit, int offset) {
+    List<EventDao> fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    EventDao create(EventDao eventDao) {
-        return null;
+    boolean create(EventDao eventDao) {
+        return false;
     }
 
     @Override
-    EventDao update(EventDao eventDao) {
-        return null;
+    boolean update(EventDao eventDao) {
+        return false;
     }
 
     @Override
-    EventDao delete(EventDao eventDao) {
-        return null;
+    boolean delete(EventDao eventDao) {
+        return false;
     }
 
     @Override

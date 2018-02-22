@@ -3,6 +3,7 @@ package app.dao;
 import app.models.User;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 public class UserDao extends Crud<User> {
 
@@ -12,23 +13,23 @@ public class UserDao extends Crud<User> {
     }
 
     @Override
-    User fetchAll(int limit, int offset) {
+    List<User> fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    User create(User user) {
-        return null;
+    boolean create(User user) {
+        return false;
     }
 
     @Override
-    User update(User user) {
-        return null;
+    boolean update(User user) {
+        return false;
     }
 
     @Override
-    User delete(User user) {
-        return null;
+    boolean delete(User user) {
+        return false;
     }
 
     @Override

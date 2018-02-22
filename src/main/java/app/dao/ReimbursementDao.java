@@ -3,6 +3,7 @@ package app.dao;
 import app.models.Reimbursement;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 public class ReimbursementDao extends Crud<Reimbursement> {
 
@@ -12,23 +13,23 @@ public class ReimbursementDao extends Crud<Reimbursement> {
     }
 
     @Override
-    Reimbursement fetchAll(int limit, int offset) {
+    List<Reimbursement> fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    Reimbursement create(Reimbursement reimbursement) {
-        return null;
+    boolean create(Reimbursement reimbursement) {
+        return false;
     }
 
     @Override
-    Reimbursement update(Reimbursement reimbursement) {
-        return null;
+    boolean update(Reimbursement reimbursement) {
+        return false;
     }
 
     @Override
-    Reimbursement delete(Reimbursement reimbursement) {
-        return null;
+    boolean delete(Reimbursement reimbursement) {
+        return false;
     }
 
     @Override

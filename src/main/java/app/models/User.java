@@ -17,6 +17,15 @@ public class User extends Model {
     public User() {
     }
 
+    public User(String firstName, String lastName, String jobTitle, String email, Role role, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.jobTitle = jobTitle;
+        this.email = email;
+        this.role = role;
+        this.password = password;
+    }
+
     public User(Long id, Date dateCreated, Date lastUpdated, String firstName, String lastName, String jobTitle, String email, Role role, String password, User directSupervisor, User departmentHead) {
         super(id, dateCreated, lastUpdated);
         this.firstName = firstName;

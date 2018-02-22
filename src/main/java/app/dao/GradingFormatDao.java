@@ -3,6 +3,7 @@ package app.dao;
 import app.models.GradingFormat;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 public class GradingFormatDao extends Crud<GradingFormat> {
 
@@ -12,23 +13,23 @@ public class GradingFormatDao extends Crud<GradingFormat> {
     }
 
     @Override
-    GradingFormat fetchAll(int limit, int offset) {
+    List<GradingFormat> fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    GradingFormat create(GradingFormat gradingFormat) {
-        return null;
+    boolean create(GradingFormat gradingFormat) {
+        return false;
     }
 
     @Override
-    GradingFormat update(GradingFormat gradingFormat) {
-        return null;
+    boolean update(GradingFormat gradingFormat) {
+        return false;
     }
 
     @Override
-    GradingFormat delete(GradingFormat gradingFormat) {
-        return null;
+    boolean delete(GradingFormat gradingFormat) {
+        return false;
     }
 
     @Override

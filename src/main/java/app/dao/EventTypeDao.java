@@ -3,6 +3,7 @@ package app.dao;
 import app.models.EventType;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 public class EventTypeDao extends Crud<EventType> {
 
@@ -12,23 +13,23 @@ public class EventTypeDao extends Crud<EventType> {
     }
 
     @Override
-    EventType fetchAll(int limit, int offset) {
+    List<EventType> fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    EventType create(EventType eventType) {
-        return null;
+    boolean create(EventType eventType) {
+        return false;
     }
 
     @Override
-    EventType update(EventType eventType) {
-        return null;
+    boolean update(EventType eventType) {
+        return false;
     }
 
     @Override
-    EventType delete(EventType eventType) {
-        return null;
+    boolean delete(EventType eventType) {
+        return false;
     }
 
     @Override

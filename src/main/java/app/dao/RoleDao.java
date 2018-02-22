@@ -3,6 +3,7 @@ package app.dao;
 import app.models.Role;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 public class RoleDao extends Crud<Role> {
 
@@ -12,23 +13,23 @@ public class RoleDao extends Crud<Role> {
     }
 
     @Override
-    Role fetchAll(int limit, int offset) {
+    List<Role> fetchAll(int limit, int offset) {
         return null;
     }
 
     @Override
-    Role create(Role role) {
-        return null;
+    boolean create(Role role) {
+        return false;
     }
 
     @Override
-    Role update(Role role) {
-        return null;
+    boolean update(Role role) {
+        return false;
     }
 
     @Override
-    Role delete(Role role) {
-        return null;
+    boolean delete(Role role) {
+        return false;
     }
 
     @Override
