@@ -13,7 +13,7 @@ import java.util.List;
 public class ReimbursementDao extends Crud<Reimbursement> {
 
     @Override
-    Reimbursement fetch(int id) {
+    public Reimbursement fetch(int id) {
         Reimbursement reimbursement = new Reimbursement();
         try (Connection c = connection()) {
             String query = "SELECT * FROM reimbursements WHERE id = ?";
@@ -41,7 +41,7 @@ public class ReimbursementDao extends Crud<Reimbursement> {
     }
 
     @Override
-    List<Reimbursement> fetchAll(int limit, int offset) {
+    public List<Reimbursement> fetchAll(int limit, int offset) {
         List<Reimbursement> reimbursements = new ArrayList<>();
         try (Connection c = connection()) {
             String query = "SELECT * FROM reimbursements LIMIT ? OFFSET ?";
@@ -72,7 +72,7 @@ public class ReimbursementDao extends Crud<Reimbursement> {
     }
 
     @Override
-    boolean create(Reimbursement reimbursement) {
+    public boolean create(Reimbursement reimbursement) {
         String query = "INSERT INTO reimbursements (" +
                 "employee_id, " +
                 "event_id, " +
@@ -109,7 +109,7 @@ public class ReimbursementDao extends Crud<Reimbursement> {
     }
 
     @Override
-    boolean update(Reimbursement reimbursement) {
+    public boolean update(Reimbursement reimbursement) {
         reimbursement.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "UPDATE reimbursements " +
@@ -143,7 +143,7 @@ public class ReimbursementDao extends Crud<Reimbursement> {
     }
 
     @Override
-    boolean delete(Reimbursement reimbursement) {
+    public boolean delete(Reimbursement reimbursement) {
         try (Connection c = connection()) {
             String query = "DELETE FROM reimbursements WHERE id = ?";
             PreparedStatement ps = c.prepareStatement(query);

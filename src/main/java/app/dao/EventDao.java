@@ -13,7 +13,7 @@ import java.util.List;
 public class EventDao extends Crud<Event> {
 
     @Override
-    Event fetch(int id) {
+    public Event fetch(int id) {
         Event event = new Event();
         try (Connection c = connection()) {
             String query = "SELECT * FROM events WHERE id = ?";
@@ -43,7 +43,7 @@ public class EventDao extends Crud<Event> {
     }
 
     @Override
-    List<Event> fetchAll(int limit, int offset) {
+    public List<Event> fetchAll(int limit, int offset) {
         List<Event> events = new ArrayList<>();
         try (Connection c = connection()) {
             String query = "SELECT * FROM events LIMIT ? OFFSET ?";
@@ -76,7 +76,7 @@ public class EventDao extends Crud<Event> {
     }
 
     @Override
-    boolean create(Event event) {
+    public boolean create(Event event) {
         event.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO events (" +
@@ -117,7 +117,7 @@ public class EventDao extends Crud<Event> {
     }
 
     @Override
-    boolean update(Event event) {
+    public boolean update(Event event) {
         event.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "UPDATE events SET " +
@@ -158,7 +158,7 @@ public class EventDao extends Crud<Event> {
     }
 
     @Override
-    boolean delete(Event event) {
+    public boolean delete(Event event) {
         try (Connection c = connection()) {
             String query = "DELETE FROM events WHERE id = ?";
             PreparedStatement ps = c.prepareStatement(query);

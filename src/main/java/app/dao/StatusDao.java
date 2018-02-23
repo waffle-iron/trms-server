@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StatusDao extends Crud<Status> {
     @Override
-    Status fetch(int id) {
+    public Status fetch(int id) {
         Status status = new Status();
         try (Connection c = connection()) {
             String query = "SELECT * FROM statuses WHERE id = ?";
@@ -33,7 +33,7 @@ public class StatusDao extends Crud<Status> {
     }
 
     @Override
-    List<Status> fetchAll(int limit, int offset) {
+    public List<Status> fetchAll(int limit, int offset) {
         List<Status> statuses = new ArrayList<>();
         try (Connection c = connection()) {
             String query = "SELECT * FROM statuses LIMIT ? OFFSET ?";
@@ -57,7 +57,7 @@ public class StatusDao extends Crud<Status> {
     }
 
     @Override
-    boolean create(Status status) {
+    public boolean create(Status status) {
         status.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO statuses (status, description, created_on, updated_on) VALUES (?, ?, ?, ?)";
@@ -75,7 +75,7 @@ public class StatusDao extends Crud<Status> {
     }
 
     @Override
-    boolean update(Status status) {
+    public boolean update(Status status) {
         status.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "UPDATE statuses SET status = ?, description = ?, updated_on = ? WHERE id = ?";
@@ -93,7 +93,7 @@ public class StatusDao extends Crud<Status> {
     }
 
     @Override
-    boolean delete(Status status) {
+    public boolean delete(Status status) {
         try (Connection c = connection()) {
             String query = "DELETE FROM statuses WHERE id = ?";
             PreparedStatement ps = c.prepareStatement(query);

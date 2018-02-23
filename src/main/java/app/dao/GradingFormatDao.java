@@ -13,7 +13,7 @@ import java.util.List;
 public class GradingFormatDao extends Crud<GradingFormat> {
 
     @Override
-    GradingFormat fetch(int id) {
+    public GradingFormat fetch(int id) {
         GradingFormat gradingFormat = new GradingFormat();
         try (Connection c = connection()) {
             String query = "SELECT * FROM grading_formats WHERE id = ?";
@@ -33,7 +33,7 @@ public class GradingFormatDao extends Crud<GradingFormat> {
     }
 
     @Override
-    List<GradingFormat> fetchAll(int limit, int offset) {
+    public List<GradingFormat> fetchAll(int limit, int offset) {
         List<GradingFormat> gradingFormats = new ArrayList<>();
         try(Connection c = connection()) {
             String query = "SELECT * FROM grading_formats LIMIT ? OFFSET ?";
@@ -56,7 +56,7 @@ public class GradingFormatDao extends Crud<GradingFormat> {
     }
 
     @Override
-    boolean create(GradingFormat gradingFormat) {
+    public boolean create(GradingFormat gradingFormat) {
         gradingFormat.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO grading_formats (" +
@@ -79,7 +79,7 @@ public class GradingFormatDao extends Crud<GradingFormat> {
     }
 
     @Override
-    boolean update(GradingFormat gradingFormat) {
+    public boolean update(GradingFormat gradingFormat) {
         gradingFormat.updateTimeStamps();
         try(Connection c = connection()) {
             String query = "UPDATE grading_formats SET " +
@@ -100,7 +100,7 @@ public class GradingFormatDao extends Crud<GradingFormat> {
     }
 
     @Override
-    boolean delete(GradingFormat gradingFormat) {
+    public boolean delete(GradingFormat gradingFormat) {
         try (Connection c = connection()) {
             String query = "DELETE FROM grading_formats WHERE id = ?";
             PreparedStatement ps = c.prepareStatement(query);

@@ -13,7 +13,7 @@ import java.util.List;
 public class EventTypeDao extends Crud<EventType> {
 
     @Override
-    EventType fetch(int id) {
+    public EventType fetch(int id) {
         EventType eventType = new EventType();
         try (Connection c = connection()) {
             String query = "SELECT * FROM event_types WHERE id = ?";
@@ -34,7 +34,7 @@ public class EventTypeDao extends Crud<EventType> {
     }
 
     @Override
-    List<EventType> fetchAll(int limit, int offset) {
+    public List<EventType> fetchAll(int limit, int offset) {
         List<EventType> eventTypes = new ArrayList<>();
         try (Connection c = connection()) {
             String query = "SELECT * FROM event_types LIMIT ? OFFSET ?";
@@ -58,7 +58,7 @@ public class EventTypeDao extends Crud<EventType> {
     }
 
     @Override
-    boolean create(EventType eventType) {
+    public boolean create(EventType eventType) {
         eventType.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO event_types (" +
@@ -81,7 +81,7 @@ public class EventTypeDao extends Crud<EventType> {
     }
 
     @Override
-    boolean update(EventType eventType) {
+    public boolean update(EventType eventType) {
         eventType.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "UPDATE event_types SET " +
@@ -101,7 +101,7 @@ public class EventTypeDao extends Crud<EventType> {
     }
 
     @Override
-    boolean delete(EventType eventType) {
+    public boolean delete(EventType eventType) {
         try (Connection c = connection()) {
             String query = "DELETE FROM event_types WHERE id = ?";
             PreparedStatement ps = c.prepareStatement(query);
