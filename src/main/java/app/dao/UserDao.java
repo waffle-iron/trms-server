@@ -111,12 +111,48 @@ public class UserDao extends Crud<User> {
     @Override
     public boolean update(User user) {
         user.updateTimeStamps();
-        return false;
+        try (Connection c = connection()) {
+            String query = "UPDATE users SET " +
+                    "first_name = ?, " +
+                    "last_name = ?, " +
+                    "job_title = ?, " +
+                    "email = ?, " +
+                    "role_id = ?, " +
+                    "password = ?, " +
+                    "direct_supervisor_id = ?, " +
+                    "department_head_id = ?, " +
+                    "updated_on = ? WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setString(3, user.getJobTitle());
+            ps.setString(4, user.getEmail());
+            ps.setInt(5, user.getRoleId());
+            ps.setString(6, user.getPassword());
+            ps.setInt(7, user.getDirectSupervisorId());
+            ps.setInt(8, user.getDepartmentHeadId());
+            ps.setTimestamp(9, DateConverter.dateToSQL(user.getLastUpdated()));
+            ps.setInt(10, user.getId());
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean delete(User user) {
-        return false;
+        try (Connection c = connection()) {
+            String query = "DELETE FROM users WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, user.getId());
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 }
