@@ -9,33 +9,35 @@ public class User extends Model {
     private String lastName;
     private String jobTitle;
     private String email;
-    private Role role;
+    private int roleId;
     private String password;
-    private User directSupervisor;
-    private User departmentHead;
+    private int directSupervisorId;
+    private int departmentHeadId;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String jobTitle, String email, Role role, String password) {
+    public User(String firstName, String lastName, String jobTitle, String email, int roleId, String password, int directSupervisorId, int departmentHeadId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
         this.email = email;
-        this.role = role;
+        this.roleId = roleId;
         this.password = password;
+        this.directSupervisorId = directSupervisorId;
+        this.departmentHeadId = departmentHeadId;
     }
 
-    public User(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, String firstName, String lastName, String jobTitle, String email, Role role, String password, User directSupervisor, User departmentHead) {
+    public User(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, String firstName, String lastName, String jobTitle, String email, int roleId, String password, int directSupervisorId, int departmentHeadId) {
         super(id, dateCreated, lastUpdated);
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
         this.email = email;
-        this.role = role;
+        this.roleId = roleId;
         this.password = password;
-        this.directSupervisor = directSupervisor;
-        this.departmentHead = departmentHead;
+        this.directSupervisorId = directSupervisorId;
+        this.departmentHeadId = departmentHeadId;
     }
 
     public String getFirstName() {
@@ -70,12 +72,12 @@ public class User extends Model {
         this.email = email;
     }
 
-    public Role getRole() {
-        return role;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public String getPassword() {
@@ -86,20 +88,20 @@ public class User extends Model {
         this.password = password;
     }
 
-    public User getDirectSupervisor() {
-        return directSupervisor;
+    public int getDirectSupervisorId() {
+        return directSupervisorId;
     }
 
-    public void setDirectSupervisor(User directSupervisor) {
-        this.directSupervisor = directSupervisor;
+    public void setDirectSupervisorId(int directSupervisorId) {
+        this.directSupervisorId = directSupervisorId;
     }
 
-    public User getDepartmentHead() {
-        return departmentHead;
+    public int getDepartmentHeadId() {
+        return departmentHeadId;
     }
 
-    public void setDepartmentHead(User departmentHead) {
-        this.departmentHead = departmentHead;
+    public void setDepartmentHeadId(int departmentHeadId) {
+        this.departmentHeadId = departmentHeadId;
     }
 
     @Override
@@ -109,10 +111,10 @@ public class User extends Model {
                 ", lastName='" + lastName + '\'' +
                 ", jobTitle='" + jobTitle + '\'' +
                 ", email='" + email + '\'' +
-                ", role=" + role +
+                ", roleId=" + roleId +
                 ", password='" + password + '\'' +
-                ", directSupervisor=" + directSupervisor +
-                ", departmentHead=" + departmentHead +
+                ", directSupervisorId=" + directSupervisorId +
+                ", departmentHeadId=" + departmentHeadId +
                 '}';
     }
 
@@ -121,19 +123,19 @@ public class User extends Model {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(getFirstName(), user.getFirstName()) &&
+        return getRoleId() == user.getRoleId() &&
+                getDirectSupervisorId() == user.getDirectSupervisorId() &&
+                getDepartmentHeadId() == user.getDepartmentHeadId() &&
+                Objects.equals(getFirstName(), user.getFirstName()) &&
                 Objects.equals(getLastName(), user.getLastName()) &&
                 Objects.equals(getJobTitle(), user.getJobTitle()) &&
                 Objects.equals(getEmail(), user.getEmail()) &&
-                Objects.equals(getRole(), user.getRole()) &&
-                Objects.equals(getPassword(), user.getPassword()) &&
-                Objects.equals(getDirectSupervisor(), user.getDirectSupervisor()) &&
-                Objects.equals(getDepartmentHead(), user.getDepartmentHead());
+                Objects.equals(getPassword(), user.getPassword());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getFirstName(), getLastName(), getJobTitle(), getEmail(), getRole(), getPassword(), getDirectSupervisor(), getDepartmentHead());
+        return Objects.hash(getFirstName(), getLastName(), getJobTitle(), getEmail(), getRoleId(), getPassword(), getDirectSupervisorId(), getDepartmentHeadId());
     }
 }

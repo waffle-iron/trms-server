@@ -26,7 +26,6 @@ public class ReimbursementDaoTest extends TestCase {
         Reimbursement r = SeedFactory.createReimbursement();
         r.setEmployee(SeedFactory.createDbUser());
         Event e = SeedFactory.createEvent();
-        e.setId(1);
         r.setEvent(e);
         assertTrue(DaoUtility.getReimbursementDao().create(r));
 

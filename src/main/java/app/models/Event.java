@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public class Event extends Model {
 
-    private EventType eventType;
+    private int eventTypeId;
     private LocalDateTime datetime;
     private String location;
     private String description;
     private String justification;
     private int cost;
-    private GradingFormat gradingFormat;
+    private int gradingFormatId;
     private String passingGradeCutoff;
     private LocalDateTime completedOn;
     private String status;
@@ -21,41 +21,41 @@ public class Event extends Model {
     public Event() {
     }
 
-    public Event(EventType eventType, LocalDateTime datetime, String location, String description, String justification, int cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
-        this.eventType = eventType;
+    public Event(int eventTypeId, LocalDateTime datetime, String location, String description, String justification, int cost, int gradingFormatId, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
+        this.eventTypeId = eventTypeId;
         this.datetime = datetime;
         this.location = location;
         this.description = description;
         this.justification = justification;
         this.cost = cost;
-        this.gradingFormat = gradingFormat;
+        this.gradingFormatId = gradingFormatId;
         this.passingGradeCutoff = passingGradeCutoff;
         this.completedOn = completedOn;
         this.status = status;
         this.attachment = attachment;
     }
 
-    public Event(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, EventType eventType, LocalDateTime datetime, String location, String description, String justification, int cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
+    public Event(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, int eventTypeId, LocalDateTime datetime, String location, String description, String justification, int cost, int gradingFormatId, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
         super(id, dateCreated, lastUpdated);
-        this.eventType = eventType;
+        this.eventTypeId = eventTypeId;
         this.datetime = datetime;
         this.location = location;
         this.description = description;
         this.justification = justification;
         this.cost = cost;
-        this.gradingFormat = gradingFormat;
+        this.gradingFormatId = gradingFormatId;
         this.passingGradeCutoff = passingGradeCutoff;
         this.completedOn = completedOn;
         this.status = status;
         this.attachment = attachment;
     }
 
-    public EventType getEventType() {
-        return eventType;
+    public int getEventTypeId() {
+        return eventTypeId;
     }
 
-    public void setEventType(EventType eventType) {
-        this.eventType = eventType;
+    public void setEventTypeId(int eventTypeId) {
+        this.eventTypeId = eventTypeId;
     }
 
     public LocalDateTime getDatetime() {
@@ -98,12 +98,12 @@ public class Event extends Model {
         this.cost = cost;
     }
 
-    public GradingFormat getGradingFormat() {
-        return gradingFormat;
+    public int getGradingFormatId() {
+        return gradingFormatId;
     }
 
-    public void setGradingFormat(GradingFormat gradingFormat) {
-        this.gradingFormat = gradingFormat;
+    public void setGradingFormatId(int gradingFormatId) {
+        this.gradingFormatId = gradingFormatId;
     }
 
     public String getPassingGradeCutoff() {
@@ -141,13 +141,13 @@ public class Event extends Model {
     @Override
     public String toString() {
         return "Event{" +
-                "eventType=" + eventType +
+                "eventTypeId=" + eventTypeId +
                 ", datetime=" + datetime +
                 ", location='" + location + '\'' +
                 ", description='" + description + '\'' +
                 ", justification='" + justification + '\'' +
                 ", cost=" + cost +
-                ", gradingFormat=" + gradingFormat +
+                ", gradingFormatId=" + gradingFormatId +
                 ", passingGradeCutoff='" + passingGradeCutoff + '\'' +
                 ", completedOn=" + completedOn +
                 ", status='" + status + '\'' +
@@ -160,13 +160,13 @@ public class Event extends Model {
         if (this == o) return true;
         if (!(o instanceof Event)) return false;
         Event event = (Event) o;
-        return getCost() == event.getCost() &&
-                Objects.equals(getEventType(), event.getEventType()) &&
+        return getEventTypeId() == event.getEventTypeId() &&
+                getCost() == event.getCost() &&
+                getGradingFormatId() == event.getGradingFormatId() &&
                 Objects.equals(getDatetime(), event.getDatetime()) &&
                 Objects.equals(getLocation(), event.getLocation()) &&
                 Objects.equals(getDescription(), event.getDescription()) &&
                 Objects.equals(getJustification(), event.getJustification()) &&
-                Objects.equals(getGradingFormat(), event.getGradingFormat()) &&
                 Objects.equals(getPassingGradeCutoff(), event.getPassingGradeCutoff()) &&
                 Objects.equals(getCompletedOn(), event.getCompletedOn()) &&
                 Objects.equals(getStatus(), event.getStatus()) &&
@@ -176,7 +176,7 @@ public class Event extends Model {
     @Override
     public int hashCode() {
 
-        int result = Objects.hash(getEventType(), getDatetime(), getLocation(), getDescription(), getJustification(), getCost(), getGradingFormat(), getPassingGradeCutoff(), getCompletedOn(), getStatus());
+        int result = Objects.hash(getEventTypeId(), getDatetime(), getLocation(), getDescription(), getJustification(), getCost(), getGradingFormatId(), getPassingGradeCutoff(), getCompletedOn(), getStatus());
         result = 31 * result + Arrays.hashCode(getAttachment());
         return result;
     }

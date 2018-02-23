@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class Reimbursement extends Model {
 
-    private User employee;
-    private Event event;
+    private int employeeId;
+    private int eventId;
     private LocalDateTime directSupervisorApprovedOn;
     private boolean directSupervisorAutoApproved;
     private LocalDateTime departmentHeadApprovedOn;
@@ -18,9 +18,9 @@ public class Reimbursement extends Model {
     public Reimbursement() {
     }
 
-    public Reimbursement(User employee, Event event, LocalDateTime directSupervisorApprovedOn, boolean directSupervisorAutoApproved, LocalDateTime departmentHeadApprovedOn, boolean departmentHeadAutoApproved, LocalDateTime benCoApprovedOn, LocalDateTime deniedOn, String deniedReason) {
-        this.employee = employee;
-        this.event = event;
+    public Reimbursement(int employeeId, int eventId, LocalDateTime directSupervisorApprovedOn, boolean directSupervisorAutoApproved, LocalDateTime departmentHeadApprovedOn, boolean departmentHeadAutoApproved, LocalDateTime benCoApprovedOn, LocalDateTime deniedOn, String deniedReason) {
+        this.employeeId = employeeId;
+        this.eventId = eventId;
         this.directSupervisorApprovedOn = directSupervisorApprovedOn;
         this.directSupervisorAutoApproved = directSupervisorAutoApproved;
         this.departmentHeadApprovedOn = departmentHeadApprovedOn;
@@ -30,10 +30,10 @@ public class Reimbursement extends Model {
         this.deniedReason = deniedReason;
     }
 
-    public Reimbursement(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, User employee, Event event, LocalDateTime directSupervisorApprovedOn, boolean directSupervisorAutoApproved, LocalDateTime departmentHeadApprovedOn, boolean departmentHeadAutoApproved, LocalDateTime benCoApprovedOn, LocalDateTime deniedOn, String deniedReason) {
+    public Reimbursement(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, int employeeId, int eventId, LocalDateTime directSupervisorApprovedOn, boolean directSupervisorAutoApproved, LocalDateTime departmentHeadApprovedOn, boolean departmentHeadAutoApproved, LocalDateTime benCoApprovedOn, LocalDateTime deniedOn, String deniedReason) {
         super(id, dateCreated, lastUpdated);
-        this.employee = employee;
-        this.event = event;
+        this.employeeId = employeeId;
+        this.eventId = eventId;
         this.directSupervisorApprovedOn = directSupervisorApprovedOn;
         this.directSupervisorAutoApproved = directSupervisorAutoApproved;
         this.departmentHeadApprovedOn = departmentHeadApprovedOn;
@@ -43,20 +43,20 @@ public class Reimbursement extends Model {
         this.deniedReason = deniedReason;
     }
 
-    public User getEmployee() {
-        return employee;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(User employee) {
-        this.employee = employee;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public Event getEvent() {
-        return event;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
     public LocalDateTime getDirectSupervisorApprovedOn() {
@@ -118,8 +118,8 @@ public class Reimbursement extends Model {
     @Override
     public String toString() {
         return "Reimbursement{" +
-                "employee=" + employee +
-                ", event=" + event +
+                "employeeId=" + employeeId +
+                ", eventId=" + eventId +
                 ", directSupervisorApprovedOn=" + directSupervisorApprovedOn +
                 ", directSupervisorAutoApproved=" + directSupervisorAutoApproved +
                 ", departmentHeadApprovedOn=" + departmentHeadApprovedOn +
@@ -135,10 +135,10 @@ public class Reimbursement extends Model {
         if (this == o) return true;
         if (!(o instanceof Reimbursement)) return false;
         Reimbursement that = (Reimbursement) o;
-        return isDirectSupervisorAutoApproved() == that.isDirectSupervisorAutoApproved() &&
+        return getEmployeeId() == that.getEmployeeId() &&
+                getEventId() == that.getEventId() &&
+                isDirectSupervisorAutoApproved() == that.isDirectSupervisorAutoApproved() &&
                 isDepartmentHeadAutoApproved() == that.isDepartmentHeadAutoApproved() &&
-                Objects.equals(getEmployee(), that.getEmployee()) &&
-                Objects.equals(getEvent(), that.getEvent()) &&
                 Objects.equals(getDirectSupervisorApprovedOn(), that.getDirectSupervisorApprovedOn()) &&
                 Objects.equals(getDepartmentHeadApprovedOn(), that.getDepartmentHeadApprovedOn()) &&
                 Objects.equals(getBenCoApprovedOn(), that.getBenCoApprovedOn()) &&
@@ -149,6 +149,6 @@ public class Reimbursement extends Model {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getEmployee(), getEvent(), getDirectSupervisorApprovedOn(), isDirectSupervisorAutoApproved(), getDepartmentHeadApprovedOn(), isDepartmentHeadAutoApproved(), getBenCoApprovedOn(), getDeniedOn(), getDeniedReason());
+        return Objects.hash(getEmployeeId(), getEventId(), getDirectSupervisorApprovedOn(), isDirectSupervisorAutoApproved(), getDepartmentHeadApprovedOn(), isDepartmentHeadAutoApproved(), getBenCoApprovedOn(), getDeniedOn(), getDeniedReason());
     }
 }
