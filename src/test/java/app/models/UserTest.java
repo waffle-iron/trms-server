@@ -19,19 +19,7 @@ public class UserTest extends TestCase {
     @Test
     public void constructor() {
         LocalDateTime date = LocalDateTime.now();
-        User u = new User(
-                1,
-                date,
-                date,
-                "firstname",
-                "lastname",
-                "job title",
-                "email",
-                new Role(),
-                "password",
-                new User(),
-                new User()
-        );
+        User u = SeedFactory.createDbUser();
         assertEquals(1, u.getId());
         assertEquals(date, u.getDateCreated());
         assertEquals(date, u.getLastUpdated());
@@ -39,10 +27,10 @@ public class UserTest extends TestCase {
         assertEquals("lastname", u.getLastName());
         assertEquals("job title", u.getJobTitle());
         assertEquals("email", u.getEmail());
-        assertTrue(u.getRole() instanceof Role);
+        assertTrue(u.getRoleId() > 0);
         assertEquals("password", u.getPassword());
-        assertTrue(u.getDirectSupervisor() instanceof User);
-        assertTrue(u.getDepartmentHead() instanceof User);
+        assertTrue(u.getDirectSupervisorId() > 0);
+        assertTrue(u.getDepartmentHeadId() > 0);
 
     }
 
@@ -77,8 +65,8 @@ public class UserTest extends TestCase {
     @Test
     public void role() {
         User user = new User();
-        user.setRole(new Role());
-        assertTrue(user.getRole() instanceof Role);
+        user.setRoleId(100);
+        assertEquals(100, user.getRoleId());
     }
 
     @Test
@@ -91,17 +79,17 @@ public class UserTest extends TestCase {
     @Test
     public void directSupervisor() {
         User user = new User();
-        User directSupervisor = new User();
-        user.setDirectSupervisor(directSupervisor);
-        assertTrue(user.getDirectSupervisor() instanceof User);
+        User directSupervisor = SeedFactory.createDbUser();
+        user.setDirectSupervisorId(directSupervisor.getId());
+        assertEquals(directSupervisor.getId(), user.getDirectSupervisorId());
     }
 
     @Test
     public void departmentHead() {
         User user = new User();
-        User departmentHead = new User();
-        user.setDepartmentHead(departmentHead);
-        assertTrue(user.getDepartmentHead().equals(departmentHead));
+        User departmentHead = SeedFactory.createDbUser();
+        user.setDepartmentHeadId(departmentHead.getId());
+        assertEquals(departmentHead.getId(), user.getDepartmentHeadId());
     }
 
     @Test

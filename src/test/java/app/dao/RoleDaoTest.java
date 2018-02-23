@@ -29,7 +29,7 @@ public class RoleDaoTest extends TestCase {
     @Test
     public void create() {
         Role role = new Role("Administrator");
-        assertTrue(DaoUtility.getRoleDao().create(role));
+        assertTrue(DaoUtility.getRoleDao().create(role) instanceof Role);
     }
 
     @Test

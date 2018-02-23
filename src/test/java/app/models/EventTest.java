@@ -1,5 +1,6 @@
 package app.models;
 
+import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,42 +16,27 @@ public class EventTest extends TestCase {
 
     @Before
     public void setUp() {
-        event = new Event();
+        event = SeedFactory.createEvent();
     }
 
     @Test
     public void constructor() {
         byte[] bytes = {};
         LocalDateTime date = LocalDateTime.now();
-        Event event = new Event(
-                1,
-                date,
-                date,
-                new EventType(),
-                date,
-                "location",
-                "description",
-                "justification",
-                1000,
-                new GradingFormat(),
-                "passing grade cutoff",
-                date,
-                "status",
-                bytes
-        );
+        Event e = SeedFactory.createEvent();
         assertEquals(1, event.getId());
         assertEquals(date, event.getDateCreated());
         assertEquals(date, event.getLastUpdated());
-        assertTrue(event.getEventType() instanceof EventType);
+        assertEquals(1, event.getEventTypeId());
         assertEquals(date, event.getDatetime());
         assertEquals("location", event.getLocation());
         assertEquals("description", event.getDescription());
         assertEquals("justification", event.getJustification());
         assertEquals(new BigDecimal(1000), event.getCost());
-        assertTrue(event.getGradingFormat() instanceof GradingFormat);
+        assertTrue(event.getGradingFormatId() > 0);
         assertEquals("passing grade cutoff", event.getPassingGradeCutoff());
         assertEquals(date, event.getCompletedOn());
-        assertEquals("status", event.getStatus());
+        assertTrue(event.getStatusId() > 0);
         assertEquals(bytes, event.getAttachment());
     }
 
@@ -58,40 +44,27 @@ public class EventTest extends TestCase {
     public void constructor1() {
         byte[] bytes = {};
         LocalDateTime date = LocalDateTime.now();
-        Event event = new Event(
-                new EventType(),
-                date,
-                "location",
-                "description",
-                "justification",
-                1000,
-                new GradingFormat(),
-                "passing grade cutoff",
-                date,
-                "status",
-                bytes
-        );
+        Event event = SeedFactory.createEvent();
         assertEquals(0, event.getId());
         assertEquals(null, event.getDateCreated());
         assertEquals(null, event.getLastUpdated());
-        assertTrue(event.getEventType() instanceof EventType);
+        assertEquals(1, event.getEventTypeId());
         assertEquals(date, event.getDatetime());
         assertEquals("location", event.getLocation());
         assertEquals("description", event.getDescription());
         assertEquals("justification", event.getJustification());
-        assertEquals(new BigDecimal(1000), event.getCost());
-        assertTrue(event.getGradingFormat() instanceof GradingFormat);
+        assertEquals(1000, event.getCost());
+        assertTrue(event.getGradingFormatId() > 0);
         assertEquals("passing grade cutoff", event.getPassingGradeCutoff());
         assertEquals(date, event.getCompletedOn());
-        assertEquals("status", event.getStatus());
+        assertTrue(event.getStatusId() > 0);
         assertEquals(bytes, event.getAttachment());
     }
 
     @Test
     public void eventTypeId() {
-        EventType eventType = new EventType();
-        event.setEventType(eventType);
-        assertEquals(eventType, event.getEventType());
+        event.setEventTypeId(100);
+        assertEquals(100, event.getEventTypeId() > 0);
     }
 
     @Test
@@ -127,9 +100,8 @@ public class EventTest extends TestCase {
 
     @Test
     public void gradingFormat() {
-        GradingFormat gradingFormat = new GradingFormat();
-        event.setGradingFormat(gradingFormat);
-        assertTrue(event.getGradingFormat() instanceof GradingFormat);
+        event.setGradingFormatId(100);
+        assertEquals(100, event.getGradingFormatId());
     }
 
     @Test
@@ -147,8 +119,8 @@ public class EventTest extends TestCase {
 
     @Test
     public void status() {
-        event.setStatus("active");
-        assertEquals("active", event.getStatus());
+        event.setStatusId(100);
+        assertEquals(100, event.getStatusId());
     }
 
     @Test

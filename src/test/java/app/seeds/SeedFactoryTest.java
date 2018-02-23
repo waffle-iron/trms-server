@@ -25,14 +25,14 @@ public class SeedFactoryTest {
         assertEquals(0, user.getId());
         assertNull(user.getDateCreated());
         assertNull(user.getLastUpdated());
-        assertTrue(user.getFirstName() instanceof String);
-        assertTrue(user.getLastName() instanceof String);
-        assertTrue(user.getJobTitle() instanceof String);
-        assertTrue(user.getEmail() instanceof String);
-        assertTrue(user.getRole() instanceof Role);
+        assertNotNull(user.getFirstName());
+        assertNotNull(user.getLastName());
+        assertNotNull(user.getJobTitle());
+        assertNotNull(user.getEmail());
+        assertTrue(user.getRoleId() > 0);
         assertEquals("secret", user.getPassword());
-        assertNull(user.getDirectSupervisor());
-        assertNull(user.getDirectSupervisor());
+        assertTrue(user.getDirectSupervisorId() > 0);
+        assertTrue(user.getDirectSupervisorId() > 0);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class SeedFactoryTest {
 
     @Test
     public void createRole() {
-        Role role = SeedFactory.createRole("Employee");
+        Role role = SeedFactory.createRole();
         assertEquals(0, role.getId());
         assertNull(role.getDateCreated());
         assertNull(role.getLastUpdated());
@@ -51,9 +51,10 @@ public class SeedFactoryTest {
 
     @Test
     public void createReimbursement() {
-        Reimbursement r = SeedFactory.createReimbursement();
-        assertTrue(r.getEvent() instanceof Event);
-        assertTrue(r.getEmployee() instanceof User);
+        User u = SeedFactory.createDbUser();
+        Reimbursement r = SeedFactory.createReimbursement(u.getId());
+        assertTrue(r.getEventId() > 0);
+        assertTrue(r.getEmployeeId() > 0);
         assertEquals(false,r.isDepartmentHeadAutoApproved());
         assertEquals(false, r.isDepartmentHeadAutoApproved());
     }
@@ -61,29 +62,29 @@ public class SeedFactoryTest {
     @Test
     public void createEvent() {
         Event e = SeedFactory.createEvent();
-        assertTrue(e.getEventType() instanceof EventType);
+        assertTrue(e.getEventTypeId() > 0);
         assertNotNull(e.getDatetime());
-        assertTrue(e.getLocation() instanceof String);
-        assertTrue(e.getDescription() instanceof String);
-        assertTrue(e.getJustification() instanceof String);
+        assertNotNull(e.getLocation());
+        assertNotNull(e.getDescription());
+        assertNotNull(e.getJustification());
         assertTrue(e.getCost() <= 1000);
-        assertTrue(e.getGradingFormat() instanceof GradingFormat);
-        assertTrue(e.getPassingGradeCutoff() instanceof String);
+        assertTrue(e.getGradingFormatId() > 0);
+        assertNotNull(e.getPassingGradeCutoff());
         assertNull(e.getCompletedOn());
     }
 
     @Test
     public void createEventType() {
         EventType e = SeedFactory.createEventType();
-        assertTrue(e.getName() instanceof String);
+        assertNotNull(e.getName());
         assertTrue(e.getPercentage() <= 100);
     }
 
     @Test
     public void createGradingFormat() {
         GradingFormat g = SeedFactory.createGradingFormat();
-        assertTrue(g.getFormat() instanceof String);
-        assertTrue(g.getDescription() instanceof String);
+        assertNotNull(g.getFormat());
+        assertNotNull(g.getDescription());
     }
 
     @Test

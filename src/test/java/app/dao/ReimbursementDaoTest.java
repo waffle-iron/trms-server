@@ -23,11 +23,12 @@ public class ReimbursementDaoTest extends TestCase {
 
     @Test
     public void create() {
-        Reimbursement r = SeedFactory.createReimbursement();
-        r.setEmployee(SeedFactory.createDbUser());
+        User u = SeedFactory.createDbUser();
+        Reimbursement r = SeedFactory.createReimbursement(u.getId());
+        r.setEmployeeId(u.getId());
         Event e = SeedFactory.createEvent();
-        r.setEvent(e);
-        assertTrue(DaoUtility.getReimbursementDao().create(r));
+        r.setEventId(e.getId());
+        assertTrue(DaoUtility.getReimbursementDao().create(r) instanceof Reimbursement);
 
     }
 

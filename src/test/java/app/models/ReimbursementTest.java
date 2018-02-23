@@ -1,5 +1,6 @@
 package app.models;
 
+import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,25 +23,13 @@ public class ReimbursementTest extends TestCase {
     @Test
     public void constructor() {
         LocalDateTime date = LocalDateTime.now();
-        Reimbursement r = new Reimbursement(
-                1,
-                date,
-                date,
-                new User(),
-                new Event(),
-                date,
-                false,
-                date,
-                false,
-                date,
-                date,
-                "denied reason"
-        );
+        User u = SeedFactory.createDbUser();
+        Reimbursement r = SeedFactory.createReimbursement(u.getId());
         assertEquals(1, r.getId());
         assertEquals(date, r.getDateCreated());
         assertEquals(date, r.getLastUpdated());
-        assertTrue(r.getEmployee() instanceof User);
-        assertTrue(r.getEvent() instanceof Event);
+        assertEquals(u.getId(), r.getEmployeeId());
+        assertEquals(1, r.getEventId());
         assertEquals(date, r.getDirectSupervisorApprovedOn());
         assertFalse(r.isDirectSupervisorAutoApproved());
         assertEquals(date, r.getDepartmentHeadApprovedOn());
@@ -53,22 +42,13 @@ public class ReimbursementTest extends TestCase {
     @Test
     public void constructor2() {
         LocalDateTime date = LocalDateTime.now();
-        Reimbursement r = new Reimbursement(
-                new User(),
-                new Event(),
-                date,
-                false,
-                date,
-                false,
-                date,
-                date,
-                "denied reason"
-        );
+        User u = SeedFactory.createDbUser();
+        Reimbursement r = SeedFactory.createReimbursement(u.getId());
         assertEquals(0, r.getId());
         assertEquals(null, r.getDateCreated());
         assertEquals(null, r.getLastUpdated());
-        assertTrue(r.getEmployee() instanceof User);
-        assertTrue(r.getEvent() instanceof Event);
+        assertEquals(u.getId(), r.getEmployeeId());
+        assertEquals(1, r.getEventId());
         assertEquals(date, r.getDirectSupervisorApprovedOn());
         assertFalse(r.isDirectSupervisorAutoApproved());
         assertEquals(date, r.getDepartmentHeadApprovedOn());
@@ -86,16 +66,16 @@ public class ReimbursementTest extends TestCase {
 
     @Test
     public void employeeId() {
-        User employee = new User();
-        reimbursement.setEmployee(employee);
-        assertEquals(employee, reimbursement.getEmployee());
+        User employee = SeedFactory.createDbUser();
+        reimbursement.setEmployeeId(employee.getId());
+        assertEquals(employee, reimbursement.getEmployeeId());
     }
 
     @Test
     public void eventId() {
-        Event event = new Event();
-        reimbursement.setEvent(event);
-        assertEquals(event, reimbursement.getEvent());
+        Event event = SeedFactory.createEvent();
+        reimbursement.setEventId(event.getId());
+        assertEquals(event, reimbursement.getEventId());
     }
 
     @Test

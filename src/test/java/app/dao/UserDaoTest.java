@@ -40,7 +40,7 @@ public class UserDaoTest extends TestCase {
     @Test
     public void create() {
         User user = SeedFactory.createUser();
-        assertTrue(DaoUtility.getUserDao().create(user));
+        assertTrue(DaoUtility.getUserDao().create(user) instanceof User);
     }
 
     @Test
