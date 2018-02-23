@@ -5,11 +5,12 @@ import app.models.Reimbursement;
 import app.models.User;
 import app.seeds.SeedFactory;
 import app.utilities.DaoUtility;
+import app.utilities.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
-public class ReimbursementDaoTest {
+public class ReimbursementDaoTest extends TestCase {
 
     @Test
     public void fetch() {
@@ -23,9 +24,9 @@ public class ReimbursementDaoTest {
     @Test
     public void create() {
         Reimbursement r = SeedFactory.createReimbursement();
-        User u = SeedFactory.createUser();
+        r.setEmployee(SeedFactory.createDbUser());
         Event e = SeedFactory.createEvent();
-        r.setEmployee(u);
+        e.setId(1);
         r.setEvent(e);
         assertTrue(DaoUtility.getReimbursementDao().create(r));
 

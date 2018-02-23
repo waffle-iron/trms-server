@@ -1,6 +1,7 @@
 package app.seeds;
 
 import app.models.*;
+import app.utilities.DaoUtility;
 import com.github.javafaker.Faker;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,11 @@ public class SeedFactory {
                 new Role(2, LocalDateTime.now(), LocalDateTime.now(), "Employee"),
                 "secret"
         );
+    }
+
+    public static User createDbUser() {
+        DaoUtility.getUserDao().create(createUser());
+        return DaoUtility.getUserDao().fetch(1);
     }
 
     public static Role createRole(String role) {

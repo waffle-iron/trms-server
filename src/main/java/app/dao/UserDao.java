@@ -14,7 +14,7 @@ import java.util.List;
 public class UserDao extends Crud<User> {
 
     @Override
-    User fetch(int id) {
+    public User fetch(int id) {
         User user = new User();
         int roleId = 0;
         int directSupervisorId;
@@ -47,7 +47,7 @@ public class UserDao extends Crud<User> {
     }
 
     @Override
-    List<User> fetchAll(int limit, int offset) {
+    public List<User> fetchAll(int limit, int offset) {
         List<User> users = new ArrayList<>();
         List<Integer> roleIds = new ArrayList<>();
         List<Integer> directSupervisorIds = new ArrayList<>();
@@ -85,7 +85,7 @@ public class UserDao extends Crud<User> {
 
 
     @Override
-    boolean create(User user) {
+    public boolean create(User user) {
         String query = "INSERT INTO users (" +
                 "first_name, " +
                 "last_name, " +
@@ -117,13 +117,13 @@ public class UserDao extends Crud<User> {
     }
 
     @Override
-    boolean update(User user) {
+    public boolean update(User user) {
         user.updateTimeStamps();
         return false;
     }
 
     @Override
-    boolean delete(User user) {
+    public boolean delete(User user) {
         return false;
     }
 
