@@ -23,7 +23,7 @@ public class ReimbursementTest extends TestCase {
     @Test
     public void constructor() {
         LocalDateTime date = LocalDateTime.now();
-        User u = SeedFactory.createDbUser();
+        User u = SeedFactory.createUser();
         Reimbursement r = SeedFactory.createReimbursement(u.getId());
         assertEquals(1, r.getId());
         assertEquals(date, r.getDateCreated());
@@ -42,7 +42,7 @@ public class ReimbursementTest extends TestCase {
     @Test
     public void constructor2() {
         LocalDateTime date = LocalDateTime.now();
-        User u = SeedFactory.createDbUser();
+        User u = SeedFactory.createUser();
         Reimbursement r = SeedFactory.createReimbursement(u.getId());
         assertEquals(0, r.getId());
         assertEquals(null, r.getDateCreated());
@@ -66,7 +66,7 @@ public class ReimbursementTest extends TestCase {
 
     @Test
     public void employeeId() {
-        User employee = SeedFactory.createDbUser();
+        User employee = SeedFactory.createUser();
         reimbursement.setEmployeeId(employee.getId());
         assertEquals(employee, reimbursement.getEmployeeId());
     }

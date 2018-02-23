@@ -16,22 +16,24 @@ public class SeedFactory {
         return fake().number().numberBetween(start, end);
     }
 
-    public static User createUser() {
+    public static User makeUser() {
         Role role = createRole();
-        return DaoUtility.getUserDao().create(new User(
+        return new User(
                 fake().name().firstName(),
                 fake().name().lastName(),
                 fake().company().profession(),
                 fake().internet().safeEmailAddress(),
                 role.getId(),
-                "secret"
-        ));
+                "secret",
+                0,
+                0
+        );
     }
 
-    public static User createDbUser() {
-        User u = DaoUtility.getUserDao().create(createUser());
-        u.setDirectSupervisorId(createUser().getId());
-        u.setDepartmentHeadId(createUser().getId());
+    public static User createUser() {
+        User u = DaoUtility.getUserDao().create(makeUser());
+        u.setDirectSupervisorId(makeUser().getId());
+        u.setDepartmentHeadId(makeUser().getId());
         return u;
     }
 

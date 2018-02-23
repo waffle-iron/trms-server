@@ -5,7 +5,6 @@ import app.utilities.TestCase;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -19,7 +18,7 @@ public class UserTest extends TestCase {
     @Test
     public void constructor() {
         LocalDateTime date = LocalDateTime.now();
-        User u = SeedFactory.createDbUser();
+        User u = SeedFactory.createUser();
         assertEquals(1, u.getId());
         assertEquals(date, u.getDateCreated());
         assertEquals(date, u.getLastUpdated());
@@ -79,7 +78,7 @@ public class UserTest extends TestCase {
     @Test
     public void directSupervisor() {
         User user = new User();
-        User directSupervisor = SeedFactory.createDbUser();
+        User directSupervisor = SeedFactory.createUser();
         user.setDirectSupervisorId(directSupervisor.getId());
         assertEquals(directSupervisor.getId(), user.getDirectSupervisorId());
     }
@@ -87,7 +86,7 @@ public class UserTest extends TestCase {
     @Test
     public void departmentHead() {
         User user = new User();
-        User departmentHead = SeedFactory.createDbUser();
+        User departmentHead = SeedFactory.createUser();
         user.setDepartmentHeadId(departmentHead.getId());
         assertEquals(departmentHead.getId(), user.getDepartmentHeadId());
     }

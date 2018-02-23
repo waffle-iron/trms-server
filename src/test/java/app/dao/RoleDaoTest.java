@@ -2,6 +2,7 @@ package app.dao;
 
 import app.config.Config;
 import app.models.Role;
+import app.seeds.SeedFactory;
 import app.utilities.DaoUtility;
 import app.utilities.TestCase;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class RoleDaoTest extends TestCase {
 
     @Test
     public void create() {
-        Role role = new Role("Administrator");
+        Role role = SeedFactory.createRole();
         assertTrue(DaoUtility.getRoleDao().create(role) instanceof Role);
     }
 

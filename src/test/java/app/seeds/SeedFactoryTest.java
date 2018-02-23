@@ -1,12 +1,15 @@
 package app.seeds;
 
 import app.models.*;
+import app.utilities.TestCase;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.*;
 
-public class SeedFactoryTest {
+public class SeedFactoryTest extends TestCase {
 
     @Test
     public void fake() {
@@ -20,8 +23,8 @@ public class SeedFactoryTest {
     }
 
     @Test
-    public void createUser() {
-        User user = SeedFactory.createUser();
+    public void makeUser() {
+        User user = SeedFactory.makeUser();
         assertEquals(0, user.getId());
         assertNull(user.getDateCreated());
         assertNull(user.getLastUpdated());
@@ -31,27 +34,28 @@ public class SeedFactoryTest {
         assertNotNull(user.getEmail());
         assertTrue(user.getRoleId() > 0);
         assertEquals("secret", user.getPassword());
-        assertTrue(user.getDirectSupervisorId() > 0);
-        assertTrue(user.getDirectSupervisorId() > 0);
+        assertEquals(0, user.getDirectSupervisorId());
+        assertEquals(0, user.getDepartmentHeadId());
     }
 
     @Test
-    public void createDbUser() {
-
+    public void createUser() {
+        User user = SeedFactory.createUser();
+        assertTrue(user instanceof User);
     }
 
     @Test
     public void createRole() {
         Role role = SeedFactory.createRole();
-        assertNotNull(role.getId());
-        assertNotNull(role.getDateCreated());
-        assertNotNull(role.getLastUpdated());
+        assertEquals(6, role.getId());
+        assertTrue(role.getDateCreated() instanceof LocalDateTime);
+        assertTrue(role.getLastUpdated() instanceof LocalDateTime);
         assertNotNull(role.getName());
     }
 
     @Test
     public void createReimbursement() {
-        User u = SeedFactory.createDbUser();
+        User u = SeedFactory.createUser();
         Reimbursement r = SeedFactory.createReimbursement(u.getId());
         assertTrue(r.getEventId() > 0);
         assertTrue(r.getEmployeeId() > 0);

@@ -23,7 +23,7 @@ public class ReimbursementDaoTest extends TestCase {
 
     @Test
     public void create() {
-        User u = SeedFactory.createDbUser();
+        User u = SeedFactory.createUser();
         Reimbursement r = SeedFactory.createReimbursement(u.getId());
         r.setEmployeeId(u.getId());
         Event e = SeedFactory.createEvent();

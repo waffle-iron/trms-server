@@ -85,7 +85,7 @@ public class UserDao extends Crud<User> {
                 "department_head_id, " +
                 "created_on, " +
                 "updated_on" +
-                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id";
         user.updateTimeStamps();
         try (Connection c = connection()) {
             PreparedStatement ps = c.prepareStatement(query);

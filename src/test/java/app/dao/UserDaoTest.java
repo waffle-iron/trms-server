@@ -23,23 +23,21 @@ public class UserDaoTest extends TestCase {
 
     @Test
     public void fetch() {
-        DaoUtility.getUserDao().create(SeedFactory.createUser());
-        User user = DaoUtility.getUserDao().fetch(1);
-        assertEquals(1, user.getId());
+        assertEquals(1, DaoUtility.getUserDao().create(SeedFactory.makeUser()).getId());
     }
 
     @Test
     public void fetchAll() {
-        DaoUtility.getUserDao().create(SeedFactory.createUser());
-        DaoUtility.getUserDao().create(SeedFactory.createUser());
-        DaoUtility.getUserDao().create(SeedFactory.createUser());
+        DaoUtility.getUserDao().create(SeedFactory.makeUser());
+        DaoUtility.getUserDao().create(SeedFactory.makeUser());
+        DaoUtility.getUserDao().create(SeedFactory.makeUser());
         List<User> users = DaoUtility.getUserDao().fetchAll(10, 0);
         assertEquals(3, users.size());
     }
 
     @Test
     public void create() {
-        User user = SeedFactory.createUser();
+        User user = SeedFactory.makeUser();
         assertTrue(DaoUtility.getUserDao().create(user) instanceof User);
     }
 
