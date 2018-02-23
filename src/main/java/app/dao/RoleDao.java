@@ -62,20 +62,22 @@ public class RoleDao extends Crud<Role> {
     }
 
     @Override
-    public boolean create(Role role) {
+    public Role create(Role role) {
         role.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO roles (name, created_on) VALUES(?, ?)";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setString(1, role.getName());
             ps.setTimestamp(2, DateConverter.dateToSQL(role.getDateCreated()));
-            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                role.setId(rs.getInt("id"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
 
-        return true;
+        return role;
     }
 
     @Override

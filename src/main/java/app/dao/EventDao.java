@@ -76,7 +76,7 @@ public class EventDao extends Crud<Event> {
     }
 
     @Override
-    public boolean create(Event event) {
+    public Event create(Event event) {
         event.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO events (" +
@@ -93,7 +93,7 @@ public class EventDao extends Crud<Event> {
                     "attachment, " +
                     "created_on, " +
                     "updated_on" +
-                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, event.getEventTypeId());
             ps.setTimestamp(2, DateConverter.dateToSQL(event.getDatetime()));
@@ -108,12 +108,14 @@ public class EventDao extends Crud<Event> {
             ps.setBytes(11, event.getAttachment());
             ps.setTimestamp(12, DateConverter.dateToSQL(event.getDateCreated()));
             ps.setTimestamp(13, DateConverter.dateToSQL(event.getLastUpdated()));
-            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                event.setId(rs.getInt("id"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return event;
     }
 
     @Override

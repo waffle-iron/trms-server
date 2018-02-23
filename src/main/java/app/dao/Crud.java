@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class Crud<T> {
     abstract T fetch(int id);
     abstract List<T> fetchAll(int limit, int offset);
-    abstract boolean create(T t);
+    abstract T create(T t);
     abstract boolean update(T t);
     abstract boolean delete(T t);
 

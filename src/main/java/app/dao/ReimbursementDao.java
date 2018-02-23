@@ -72,7 +72,7 @@ public class ReimbursementDao extends Crud<Reimbursement> {
     }
 
     @Override
-    public boolean create(Reimbursement reimbursement) {
+    public Reimbursement create(Reimbursement reimbursement) {
         String query = "INSERT INTO reimbursements (" +
                 "employee_id, " +
                 "event_id, " +
@@ -100,12 +100,14 @@ public class ReimbursementDao extends Crud<Reimbursement> {
             ps.setString(9, reimbursement.getDeniedReason());
             ps.setTimestamp(10, DateConverter.dateToSQL(reimbursement.getDateCreated()));
             ps.setTimestamp(11, DateConverter.dateToSQL(reimbursement.getLastUpdated()));
-            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                reimbursement.setId(rs.getInt("id"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return reimbursement;
     }
 
     @Override

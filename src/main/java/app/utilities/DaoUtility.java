@@ -1,8 +1,6 @@
 package app.utilities;
 
-import app.dao.ReimbursementDao;
-import app.dao.RoleDao;
-import app.dao.UserDao;
+import app.dao.*;
 
 public class DaoUtility {
 
@@ -16,5 +14,21 @@ public class DaoUtility {
 
     public static ReimbursementDao getReimbursementDao() {
         return new ReimbursementDao();
+    }
+
+    public static EventDao getEventDao() {
+        return new EventDao();
+    }
+
+    public static EventTypeDao getEventTypeDao() {
+        return new EventTypeDao();
+    }
+
+    public static GradingFormatDao getGradingFormatDao() {
+        return new GradingFormatDao();
+    }
+
+    public static StatusDao getStatusDao() {
+        return new StatusDao();
     }
 }

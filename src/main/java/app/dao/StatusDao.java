@@ -57,7 +57,7 @@ public class StatusDao extends Crud<Status> {
     }
 
     @Override
-    public boolean create(Status status) {
+    public Status create(Status status) {
         status.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO statuses (status, description, created_on, updated_on) VALUES (?, ?, ?, ?)";
@@ -66,12 +66,14 @@ public class StatusDao extends Crud<Status> {
             ps.setString(2, status.getDescription());
             ps.setTimestamp(3, DateConverter.dateToSQL(status.getDateCreated()));
             ps.setTimestamp(4, DateConverter.dateToSQL(status.getLastUpdated()));
-            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                status.setId(rs.getInt("id"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return status;
     }
 
     @Override

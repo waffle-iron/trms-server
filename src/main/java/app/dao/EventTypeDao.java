@@ -58,7 +58,7 @@ public class EventTypeDao extends Crud<EventType> {
     }
 
     @Override
-    public boolean create(EventType eventType) {
+    public EventType create(EventType eventType) {
         eventType.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO event_types (" +
@@ -72,12 +72,14 @@ public class EventTypeDao extends Crud<EventType> {
             ps.setInt(2, eventType.getPercentage());
             ps.setTimestamp(3, DateConverter.dateToSQL(eventType.getDateCreated()));
             ps.setTimestamp(4, DateConverter.dateToSQL(eventType.getLastUpdated()));
-            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                eventType.setId(rs.getInt("id"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return eventType;
     }
 
     @Override

@@ -56,7 +56,7 @@ public class GradingFormatDao extends Crud<GradingFormat> {
     }
 
     @Override
-    public boolean create(GradingFormat gradingFormat) {
+    public GradingFormat create(GradingFormat gradingFormat) {
         gradingFormat.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO grading_formats (" +
@@ -70,12 +70,14 @@ public class GradingFormatDao extends Crud<GradingFormat> {
             ps.setString(2, gradingFormat.getDescription());
             ps.setTimestamp(3, DateConverter.dateToSQL(gradingFormat.getDateCreated()));
             ps.setTimestamp(4, DateConverter.dateToSQL(gradingFormat.getLastUpdated()));
-            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                gradingFormat.setId(rs.getInt("id"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return gradingFormat;
     }
 
     @Override

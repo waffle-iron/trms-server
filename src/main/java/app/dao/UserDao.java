@@ -73,7 +73,7 @@ public class UserDao extends Crud<User> {
 
 
     @Override
-    public boolean create(User user) {
+    public User create(User user) {
         String query = "INSERT INTO users (" +
                 "first_name, " +
                 "last_name, " +
@@ -99,13 +99,15 @@ public class UserDao extends Crud<User> {
             ps.setInt(8, user.getDepartmentHeadId());
             ps.setTimestamp(9, DateConverter.dateToSQL(user.getDateCreated()));
             ps.setTimestamp(10, DateConverter.dateToSQL(user.getLastUpdated()));
-            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                user.setId(rs.getInt("id"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
 
-        return true;
+        return user;
     }
 
     @Override
