@@ -15,13 +15,13 @@ public class Event extends Model {
     private int gradingFormatId;
     private String passingGradeCutoff;
     private LocalDateTime completedOn;
-    private String status;
+    private int statusId;
     private byte[] attachment;
 
     public Event() {
     }
 
-    public Event(int eventTypeId, LocalDateTime datetime, String location, String description, String justification, int cost, int gradingFormatId, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
+    public Event(int eventTypeId, LocalDateTime datetime, String location, String description, String justification, int cost, int gradingFormatId, String passingGradeCutoff, LocalDateTime completedOn, int statusId, byte[] attachment) {
         this.eventTypeId = eventTypeId;
         this.datetime = datetime;
         this.location = location;
@@ -31,11 +31,11 @@ public class Event extends Model {
         this.gradingFormatId = gradingFormatId;
         this.passingGradeCutoff = passingGradeCutoff;
         this.completedOn = completedOn;
-        this.status = status;
+        this.statusId = statusId;
         this.attachment = attachment;
     }
 
-    public Event(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, int eventTypeId, LocalDateTime datetime, String location, String description, String justification, int cost, int gradingFormatId, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
+    public Event(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, int eventTypeId, LocalDateTime datetime, String location, String description, String justification, int cost, int gradingFormatId, String passingGradeCutoff, LocalDateTime completedOn, int statusId, byte[] attachment) {
         super(id, dateCreated, lastUpdated);
         this.eventTypeId = eventTypeId;
         this.datetime = datetime;
@@ -46,7 +46,7 @@ public class Event extends Model {
         this.gradingFormatId = gradingFormatId;
         this.passingGradeCutoff = passingGradeCutoff;
         this.completedOn = completedOn;
-        this.status = status;
+        this.statusId = statusId;
         this.attachment = attachment;
     }
 
@@ -122,12 +122,12 @@ public class Event extends Model {
         this.completedOn = completedOn;
     }
 
-    public String getStatus() {
-        return status;
+    public int getStatusId() {
+        return statusId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 
     public byte[] getAttachment() {
@@ -150,7 +150,7 @@ public class Event extends Model {
                 ", gradingFormatId=" + gradingFormatId +
                 ", passingGradeCutoff='" + passingGradeCutoff + '\'' +
                 ", completedOn=" + completedOn +
-                ", status='" + status + '\'' +
+                ", statusId=" + statusId +
                 ", attachment=" + Arrays.toString(attachment) +
                 '}';
     }
@@ -163,20 +163,20 @@ public class Event extends Model {
         return getEventTypeId() == event.getEventTypeId() &&
                 getCost() == event.getCost() &&
                 getGradingFormatId() == event.getGradingFormatId() &&
+                getStatusId() == event.getStatusId() &&
                 Objects.equals(getDatetime(), event.getDatetime()) &&
                 Objects.equals(getLocation(), event.getLocation()) &&
                 Objects.equals(getDescription(), event.getDescription()) &&
                 Objects.equals(getJustification(), event.getJustification()) &&
                 Objects.equals(getPassingGradeCutoff(), event.getPassingGradeCutoff()) &&
                 Objects.equals(getCompletedOn(), event.getCompletedOn()) &&
-                Objects.equals(getStatus(), event.getStatus()) &&
                 Arrays.equals(getAttachment(), event.getAttachment());
     }
 
     @Override
     public int hashCode() {
 
-        int result = Objects.hash(getEventTypeId(), getDatetime(), getLocation(), getDescription(), getJustification(), getCost(), getGradingFormatId(), getPassingGradeCutoff(), getCompletedOn(), getStatus());
+        int result = Objects.hash(getEventTypeId(), getDatetime(), getLocation(), getDescription(), getJustification(), getCost(), getGradingFormatId(), getPassingGradeCutoff(), getCompletedOn(), getStatusId());
         result = 31 * result + Arrays.hashCode(getAttachment());
         return result;
     }
