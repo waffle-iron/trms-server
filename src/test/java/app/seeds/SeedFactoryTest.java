@@ -43,10 +43,10 @@ public class SeedFactoryTest {
     @Test
     public void createRole() {
         Role role = SeedFactory.createRole();
-        assertEquals(0, role.getId());
-        assertNull(role.getDateCreated());
-        assertNull(role.getLastUpdated());
-        assertEquals("Employee", role.getName());
+        assertNotNull(role.getId());
+        assertNotNull(role.getDateCreated());
+        assertNotNull(role.getLastUpdated());
+        assertNotNull(role.getName());
     }
 
     @Test

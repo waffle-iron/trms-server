@@ -65,10 +65,11 @@ public class RoleDao extends Crud<Role> {
     public Role create(Role role) {
         role.updateTimeStamps();
         try (Connection c = connection()) {
-            String query = "INSERT INTO roles (name, created_on) VALUES(?, ?)";
+            String query = "INSERT INTO roles (name, created_on, updated_on) VALUES(?, ?, ?)";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setString(1, role.getName());
             ps.setTimestamp(2, DateConverter.dateToSQL(role.getDateCreated()));
+            ps.setTimestamp(3, DateConverter.dateToSQL(role.getLastUpdated()));
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 role.setId(rs.getInt("id"));

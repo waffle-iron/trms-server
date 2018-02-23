@@ -17,12 +17,13 @@ public class SeedFactory {
     }
 
     public static User createUser() {
+        Role role = createRole();
         return DaoUtility.getUserDao().create(new User(
                 fake().name().firstName(),
                 fake().name().lastName(),
                 fake().company().profession(),
                 fake().internet().safeEmailAddress(),
-                createRole().getId(),
+                role.getId(),
                 "secret"
         ));
     }
@@ -53,7 +54,7 @@ public class SeedFactory {
     }
 
     public static Event createEvent() {
-        return new Event(
+        return DaoUtility.getEventDao().create(new Event(
                 createEventType().getId(),
                 LocalDateTime.now(),
                 fake().address().cityName(),
@@ -65,7 +66,7 @@ public class SeedFactory {
                 null,
                 createStatus().getId(),
                 null
-        );
+        ));
     }
 
     public static EventType createEventType() {
