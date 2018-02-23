@@ -13,7 +13,7 @@ import java.util.List;
 public class RoleDao extends Crud<Role> {
 
     @Override
-    Role fetch(int id) {
+    public Role fetch(int id) {
         Role role = new Role();
         try (Connection c = connection()) {
             String query = "SELECT * FROM roles WHERE id = ?";
@@ -37,7 +37,7 @@ public class RoleDao extends Crud<Role> {
     }
 
     @Override
-    List<Role> fetchAll(int limit, int offset) {
+    public List<Role> fetchAll(int limit, int offset) {
         List<Role> roles = new ArrayList<>();
         try (Connection c = connection()) {
             String query = "SELECT * FROM roles LIMIT ? OFFSET ?";
@@ -62,7 +62,7 @@ public class RoleDao extends Crud<Role> {
     }
 
     @Override
-    boolean create(Role role) {
+    public boolean create(Role role) {
         role.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "INSERT INTO roles (name, created_on) VALUES(?, ?)";
@@ -79,7 +79,7 @@ public class RoleDao extends Crud<Role> {
     }
 
     @Override
-    boolean update(Role role) {
+    public boolean update(Role role) {
         role.updateTimeStamps();
         try (Connection c = connection()) {
             String query = "UPDATE roles SET name = ?, updated_on = ? WHERE id = ?";
@@ -96,7 +96,7 @@ public class RoleDao extends Crud<Role> {
     }
 
     @Override
-    boolean delete(Role role) {
+    public boolean delete(Role role) {
         try (Connection c = connection()) {
             String query = "DELETE FROM roles WHERE id = ?";
             PreparedStatement ps = c.prepareStatement(query);
