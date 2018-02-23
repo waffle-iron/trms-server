@@ -1,10 +1,8 @@
 package app.seeds;
 
-import app.models.Role;
-import app.models.User;
+import app.models.*;
 import com.github.javafaker.Faker;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class SeedFactory {
@@ -30,5 +28,49 @@ public class SeedFactory {
 
     public static Role createRole(String role) {
         return new Role(role);
+    }
+
+    public static Reimbursement createReimbursement() {
+        return new Reimbursement(
+                new User(),
+                new Event(),
+                LocalDateTime.now(),
+                false,
+                LocalDateTime.now(),
+                false,
+                null,
+                null,
+                ""
+        );
+    }
+
+    public static Event createEvent() {
+        return new Event(
+                new EventType(),
+                LocalDateTime.now(),
+                fake().address().cityName(),
+                fake().lorem().sentence(),
+                fake().lorem().sentence(),
+                fake().number().numberBetween(100, 1000),
+                new GradingFormat(),
+                String.valueOf(fake().number().numberBetween(50, 100)),
+                null,
+                "",
+                null
+        );
+    }
+
+    public static EventType createEventType() {
+        return new EventType(
+                fake().beer().style(),
+                fake().number().numberBetween(50, 100)
+        );
+    }
+
+    public static GradingFormat createGradingFormat() {
+        return new GradingFormat(
+                fake().lorem().word(),
+                fake().lorem().sentence()
+        );
     }
 }

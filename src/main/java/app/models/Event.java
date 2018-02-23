@@ -1,6 +1,5 @@
 package app.models;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
@@ -12,7 +11,7 @@ public class Event extends Model {
     private String location;
     private String description;
     private String justification;
-    private BigDecimal cost;
+    private int cost;
     private GradingFormat gradingFormat;
     private String passingGradeCutoff;
     private LocalDateTime completedOn;
@@ -22,7 +21,7 @@ public class Event extends Model {
     public Event() {
     }
 
-    public Event(EventType eventType, LocalDateTime datetime, String location, String description, String justification, BigDecimal cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
+    public Event(EventType eventType, LocalDateTime datetime, String location, String description, String justification, int cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
         this.eventType = eventType;
         this.datetime = datetime;
         this.location = location;
@@ -36,7 +35,7 @@ public class Event extends Model {
         this.attachment = attachment;
     }
 
-    public Event(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, EventType eventType, LocalDateTime datetime, String location, String description, String justification, BigDecimal cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
+    public Event(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, EventType eventType, LocalDateTime datetime, String location, String description, String justification, int cost, GradingFormat gradingFormat, String passingGradeCutoff, LocalDateTime completedOn, String status, byte[] attachment) {
         super(id, dateCreated, lastUpdated);
         this.eventType = eventType;
         this.datetime = datetime;
@@ -91,11 +90,11 @@ public class Event extends Model {
         this.justification = justification;
     }
 
-    public BigDecimal getCost() {
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(BigDecimal cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 
@@ -161,12 +160,12 @@ public class Event extends Model {
         if (this == o) return true;
         if (!(o instanceof Event)) return false;
         Event event = (Event) o;
-        return Objects.equals(getEventType(), event.getEventType()) &&
+        return getCost() == event.getCost() &&
+                Objects.equals(getEventType(), event.getEventType()) &&
                 Objects.equals(getDatetime(), event.getDatetime()) &&
                 Objects.equals(getLocation(), event.getLocation()) &&
                 Objects.equals(getDescription(), event.getDescription()) &&
                 Objects.equals(getJustification(), event.getJustification()) &&
-                Objects.equals(getCost(), event.getCost()) &&
                 Objects.equals(getGradingFormat(), event.getGradingFormat()) &&
                 Objects.equals(getPassingGradeCutoff(), event.getPassingGradeCutoff()) &&
                 Objects.equals(getCompletedOn(), event.getCompletedOn()) &&

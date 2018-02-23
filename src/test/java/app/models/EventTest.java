@@ -1,6 +1,5 @@
 package app.models;
 
-import app.seeds.SeedFactory;
 import app.utilities.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +31,7 @@ public class EventTest extends TestCase {
                 "location",
                 "description",
                 "justification",
-                new BigDecimal(1000),
+                1000,
                 new GradingFormat(),
                 "passing grade cutoff",
                 date,
@@ -65,7 +64,7 @@ public class EventTest extends TestCase {
                 "location",
                 "description",
                 "justification",
-                new BigDecimal(1000),
+                1000,
                 new GradingFormat(),
                 "passing grade cutoff",
                 date,
@@ -122,8 +121,8 @@ public class EventTest extends TestCase {
 
     @Test
     public void cost() {
-        event.setCost(BigDecimal.valueOf(100.00));
-        assertEquals(BigDecimal.valueOf(100.00), event.getCost());
+        event.setCost(100);
+        assertEquals(100, event.getCost());
     }
 
     @Test

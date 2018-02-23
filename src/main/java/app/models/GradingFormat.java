@@ -11,6 +11,11 @@ public class GradingFormat extends Model {
     public GradingFormat() {
     }
 
+    public GradingFormat(String format, String description) {
+        this.format = format;
+        this.description = description;
+    }
+
     public GradingFormat(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, String format, String description) {
         super(id, dateCreated, lastUpdated);
         this.format = format;

@@ -1,8 +1,6 @@
 package app.seeds;
 
-import app.models.Reimbursement;
-import app.models.Role;
-import app.models.User;
+import app.models.*;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 
@@ -49,5 +47,47 @@ public class SeedFactoryTest {
         assertNull(role.getDateCreated());
         assertNull(role.getLastUpdated());
         assertEquals("Employee", role.getName());
+    }
+
+    @Test
+    public void createReimbursement() {
+        Reimbursement r = SeedFactory.createReimbursement();
+        assertTrue(r.getEvent() instanceof Event);
+        assertTrue(r.getEmployee() instanceof User);
+        assertEquals(false,r.isDepartmentHeadAutoApproved());
+        assertEquals(false, r.isDepartmentHeadAutoApproved());
+    }
+
+    @Test
+    public void createEvent() {
+        Event e = SeedFactory.createEvent();
+        assertTrue(e.getEventType() instanceof EventType);
+        assertNotNull(e.getDatetime());
+        assertTrue(e.getLocation() instanceof String);
+        assertTrue(e.getDescription() instanceof String);
+        assertTrue(e.getJustification() instanceof String);
+        assertTrue(e.getCost() <= 1000);
+        assertTrue(e.getGradingFormat() instanceof GradingFormat);
+        assertTrue(e.getPassingGradeCutoff() instanceof String);
+        assertNull(e.getCompletedOn());
+    }
+
+    @Test
+    public void createEventType() {
+        EventType e = SeedFactory.createEventType();
+        assertTrue(e.getName() instanceof String);
+        assertTrue(e.getPercentage() <= 100);
+    }
+
+    @Test
+    public void createGradingFormat() {
+        GradingFormat g = SeedFactory.createGradingFormat();
+        assertTrue(g.getFormat() instanceof String);
+        assertTrue(g.getDescription() instanceof String);
+    }
+
+    @Test
+    public void createStatus() {
+
     }
 }

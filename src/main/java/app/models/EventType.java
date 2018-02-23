@@ -12,6 +12,11 @@ public class EventType extends Model {
         super();
     }
 
+    public EventType(String name, int percentage) {
+        this.name = name;
+        this.percentage = percentage;
+    }
+
     public EventType(int id, LocalDateTime dateCreated, LocalDateTime lastUpdated, String name, int percentage) {
         super(id, dateCreated, lastUpdated);
         this.name = name;

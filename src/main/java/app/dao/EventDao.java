@@ -1,6 +1,5 @@
 package app.dao;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 public class EventDao extends Crud<EventDao> {

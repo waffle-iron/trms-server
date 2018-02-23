@@ -6,10 +6,16 @@ import java.time.LocalDateTime;
 public class DateConverter {
 
     public static Timestamp dateToSQL(LocalDateTime localDateTime) {
-        return Timestamp.valueOf(localDateTime);
+        if (localDateTime != null) {
+            return Timestamp.valueOf(localDateTime);
+        }
+        return null;
     }
 
     public static LocalDateTime dateToLocalDateTime(Timestamp timestamp) {
-        return timestamp.toLocalDateTime();
+        if (timestamp != null) {
+            return timestamp.toLocalDateTime();
+        }
+        return null;
     }
 }
